@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { LoginStructure } from './components/LoginStructure';
 import { SimpleButton } from './components/SimpleButton';
 import { FormField } from './components/FormField';
@@ -9,6 +9,11 @@ import { ImageTextButton } from './components/ImageTextButton';
 import { MainTitle } from './components/MainTitle';
 import {DecorativeIcon} from './components/DecorativeIcon';
 import { MainHeader } from './components/MainHeader';
+import { StandardCard } from './components/StandardCard';
+import { PrimaryWeatherCard } from './components/PrimaryWeatherCard';
+import { SecondaryWeatherCard } from './components/SecondaryWeatherCard';
+import { SecondaryTitle} from './components/SecondaryTitle';
+import { FullWeatherCard } from './components/FullWeatherCard';
 import { useFonts } from 'expo-font';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -19,35 +24,62 @@ export default function App() {
   });
 
   return (
-     <View style={{alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#fff' }}>
-        <ImageTextButton
-          source={require('./assets/images/icons/general/money-icon.png')} 
-          text="Histórico" 
-          mainColor="#80A218" 
-          variant="primary" 
+     <ScrollView contentContainerStyle={[{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}]}>
+        <FullWeatherCard
+          max='30ºC'
+          min='19ºC'
+          conditionIcon={require('./assets/images/icons/weather/sun-condition-icon.png')}
+          evapotranspiration='0.03MM'
+          probabilityRain='0%'
+          wind='NO 20KM/H'
+          humidity='67% - 90%'
+          cloud='92%'
         />
 
-        <ImageTextButton
-          source={require('./assets/images/icons/history/tobacco-icon.png')} 
-          text="Tabaco" 
-          mainColor="#80A218" 
-          variant="secondary" 
+        <FullWeatherCard
+          max='30ºC'
+          min='19ºC'
+          conditionIcon={require('./assets/images/icons/weather/sun-condition-icon.png')}
+          evapotranspiration='0.03MM'
+          probabilityRain='0%'
+          wind='NO 20KM/H'
+          humidity='67% - 90%'
+          cloud='92%'
         />
 
-      <MainTitle
-      title="Raiz Tech"
-      />
+        <FullWeatherCard
+          max='30ºC'
+          min='19ºC'
+          conditionIcon={require('./assets/images/icons/weather/sun-condition-icon.png')}
+          evapotranspiration='0.03MM'
+          probabilityRain='0%'
+          wind='NO 20KM/H'
+          humidity='67% - 90%'
+          cloud='92%'
+        />
 
-      <DecorativeIcon
-        source={require('./assets/images/icons/history/tobacco-icon.png')}
-        backgroundColor="#80A218"
-      />
+        <FullWeatherCard
+          max='30ºC'
+          min='19ºC'
+          conditionIcon={require('./assets/images/icons/weather/sun-condition-icon.png')}
+          evapotranspiration='0.03MM'
+          probabilityRain='0%'
+          wind='NO 20KM/H'
+          humidity='67% - 90%'
+          cloud='92%'
+        />
 
-      <MainHeader
-        title='Configurações'
-        source={require('./assets/images/icons/general/settings-icon.png')}
-      />
-      </View>  
+        <FullWeatherCard
+          max='30ºC'
+          min='19ºC'
+          conditionIcon={require('./assets/images/icons/weather/sun-condition-icon.png')}
+          evapotranspiration='0.03MM'
+          probabilityRain='0%'
+          wind='NO 20KM/H'
+          humidity='67% - 90%'
+          cloud='92%'
+        />
+     </ScrollView>
   );
 }
 
