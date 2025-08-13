@@ -4,9 +4,9 @@ import {styles} from "./styles";
 
 interface ImageTextButtonProps extends TouchableOpacityProps {
     source: any;
-    text?: string;
-    mainColor?: string;
-    variant?: 'primary' | 'secondary';
+    text: string;
+    mainColor: string;
+    variant: 'primary' | 'secondary';
 }
 
 export function ImageTextButton({source, text, mainColor, variant = 'primary', ...rest}: ImageTextButtonProps) {

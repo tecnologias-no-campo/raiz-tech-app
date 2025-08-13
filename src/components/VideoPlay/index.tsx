@@ -6,6 +6,7 @@ import { styles } from "./styles";
 interface VideoPlayProps extends  Omit<YoutubeIframeProps, "width" | "height"> {
     aspectRatio: number;
     width: number;
+    
 }
 
 export function VideoPlay({aspectRatio, width, ...rest} : VideoPlayProps)  {
@@ -17,6 +18,14 @@ export function VideoPlay({aspectRatio, width, ...rest} : VideoPlayProps)  {
             <YoutubePlayer
                 height={height}
                 width={width}
+                 webViewProps={{
+                    injectedJavaScript: `
+                        var element = document.getElementsByClassName('container')[0];
+                        element.style.position = 'unset';
+                        true;
+                    `,
+                    // Uma solução temporária mas que pode gerar problemas no aplicativo
+                }}
                 {...rest}
             />
         </View>
