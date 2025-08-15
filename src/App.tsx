@@ -1,6 +1,7 @@
 import { useFonts } from 'expo-font';
+import { MenuHistoryScreen } from './screens/MenuHistoryScreen';
 import { ProductHistoryScreen } from './screens/ProductHistoryScreen';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 export default function App() {
@@ -10,9 +11,9 @@ export default function App() {
   });
 
   return (
-      <SafeAreaView style={{width: '100%', height: '100%', padding: 0, margin: 0}} edges={["top", "bottom"]}>
+      <SafeAreaProvider>
         <ProductHistoryScreen/>
-      </SafeAreaView> 
+      </SafeAreaProvider> 
   );
 }
 

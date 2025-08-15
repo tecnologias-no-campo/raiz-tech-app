@@ -1,17 +1,17 @@
 import React from "react";
 import { MainHeader } from "../MainHeader";
 import { FooterNav } from "../FooterNav";
-import { View, ScrollView, Dimensions, ScrollViewProps } from "react-native";
+import { ScrollView, View, ViewProps } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const {width, height} = Dimensions.get("window");
 
-export function MainStructure({children} : ScrollViewProps) {
+export function MainStructure({children} : ViewProps) {
     return(
-        <View style={{flex: 1, flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-            <ScrollView contentContainerStyle={{alignItems: "center", flex: 1}}>
+        <SafeAreaView style={{flex: 1, padding: 0, margin: 0}} edges={["top", "bottom"]}>
+            <View style={{flex: 1, alignItems: 'center'}}>
                 {children}
-            </ScrollView>
+            </View>
             <FooterNav/>
-        </View>
+        </SafeAreaView>
     )
 }
