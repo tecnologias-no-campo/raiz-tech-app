@@ -6,7 +6,13 @@ import { MainStructure } from "../../components/MainStructure";
 import { ScrollView, View } from "react-native";
 import { styles } from "./style";
 
-export function MenuHistoryScreen()   {
+//Navigator
+import { RootStackParamList } from "../../types/navigation";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+type Props = NativeStackScreenProps<RootStackParamList, 'MenuHistoryScreen'>
+
+export function MenuHistoryScreen({navigation} : Props)   {
     return  (
             <MainStructure>
                 <MainHeader
@@ -19,6 +25,7 @@ export function MenuHistoryScreen()   {
                         text="tabaco"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "tabaco"})}
                     />
 
                     <ImageTextButton
@@ -26,6 +33,7 @@ export function MenuHistoryScreen()   {
                         text="soja"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "soja"})}
                     />
 
                     <ImageTextButton
@@ -33,6 +41,7 @@ export function MenuHistoryScreen()   {
                         text="milho"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "milho"})}
                     />
 
                     <ImageTextButton
@@ -40,6 +49,7 @@ export function MenuHistoryScreen()   {
                         text="feijão"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "feijão"})}
                     />
 
                     <ImageTextButton
@@ -47,6 +57,7 @@ export function MenuHistoryScreen()   {
                         text="trigo"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "trigo"})}
                     />
 
                     <ImageTextButton
@@ -54,6 +65,7 @@ export function MenuHistoryScreen()   {
                         text="cebola"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "cebola"})}
                     />
 
                     <ImageTextButton
@@ -61,6 +73,7 @@ export function MenuHistoryScreen()   {
                         text="batata"
                         mainColor="#80A218"
                         variant="secondary"
+                        onPress={() => navigation.navigate("ProductHistoryScreen", {product: "batata"})}
                     />
                 </View>   
             </MainStructure>             

@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, Image, TouchableOpacity, TouchableOpacityProps} from "react-native";
+import {Text, Image, TouchableOpacity, TouchableOpacityProps, Dimensions} from "react-native";
 import {styles} from "./styles";
 
 interface ImageTextButtonProps extends TouchableOpacityProps {
@@ -10,10 +10,18 @@ interface ImageTextButtonProps extends TouchableOpacityProps {
 }
 
 export function ImageTextButton({source, text, mainColor, variant = 'primary', ...rest}: ImageTextButtonProps) {
+
+    const screenWidth = Dimensions.get('window').width;
+    const secondaryButttonWidth = screenWidth * 0.9;
+
     const buttonStyle = [
         variant === 'primary' 
         ? [styles.primaryButton, {backgroundColor: mainColor || '#000'}] 
-        : [styles.secondaryButton, {borderColor: mainColor || '#000'}], 
+        : [styles.secondaryButton, 
+            {
+                borderColor: mainColor || '#000',
+                width: secondaryButttonWidth
+            }], 
         styles.button
     ];
 
@@ -25,7 +33,7 @@ export function ImageTextButton({source, text, mainColor, variant = 'primary', .
     ];
 
     return (
-        <TouchableOpacity style={buttonStyle}>
+        <TouchableOpacity style={buttonStyle} {...rest}>
             <Image source={source} style={styles.image} />
             <Text style={textStyle}>{text}</Text>
         </TouchableOpacity>

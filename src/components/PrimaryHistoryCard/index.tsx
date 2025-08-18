@@ -6,17 +6,19 @@ import { styles } from "./styles";
 interface PrimaryHistoryCardProps   {
     vari: string,
     data: string,
+    unit: string,
 }
 
-export function PrimaryHistoryCard({vari, data, ...rest} : PrimaryHistoryCardProps)    {
+export function PrimaryHistoryCard({vari, data, unit, ...rest} : PrimaryHistoryCardProps)    {
 
     const screenWidth = Dimensions.get('window').width;
     const cardWidth = screenWidth * 0.8;
+    const dataformat = Number(data).toLocaleString('pt-br');
 
     return (
         <StandardCard background="#fdfdfd"  borderColor="#80A218" width={cardWidth} borderWidth={3}style={{padding: 20, marginTop: 20}}>
             <Text style={styles.title}>{vari}</Text>
-            <Text style={styles.data}>{data}</Text>
+            <Text style={styles.data}>{dataformat} {unit}</Text>
         </StandardCard>
     )
 }

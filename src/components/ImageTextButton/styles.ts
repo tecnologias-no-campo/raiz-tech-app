@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     },
 
     secondaryButton: {
-        width: 340,
         height: 55,
         backgroundColor: '#ffffff',
         borderWidth: 2,

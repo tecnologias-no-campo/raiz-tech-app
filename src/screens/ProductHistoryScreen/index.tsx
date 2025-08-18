@@ -5,19 +5,30 @@ import { MainStructure } from "../../components/MainStructure";
 import { MainHeader } from "../../components/MainHeader";
 import { View, ScrollView } from "react-native";
 import { styles } from "./styles";
-import { SidraResponse, ValorDescritoPorSuasDimensoes } from "../../types/historyType";
+import { SidraResponse } from "../../types/historyType";
 import mockData from "../../data/mockSIDRA.json";
-import { FooterNav } from "../../components/FooterNav";
 
-export function ProductHistoryScreen()  {
+//Utils
+import { productImageMap } from "../../utils/productImageMap";
+
+//Navigator
+import { RootStackParamList } from "../../types/navigation";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+type Props = NativeStackScreenProps<RootStackParamList, 'ProductHistoryScreen'>
+
+export function ProductHistoryScreen({navigation, route} : Props)  {
     const data : SidraResponse = mockData;
     const itens = data.ArrayOfValorDescritoPorSuasDimensoes.ValorDescritoPorSuasDimensoes;
+
+    //Obtendo o nome do produto via navegação
+    const {product} = route.params;
 
     return(
         <MainStructure>
             <MainHeader
-                title="TABACO"
-                source={require('../../assets/images/icons/general/money-icon.png')}
+                title={product}
+                source={productImageMap[product]}
             />
                 <View style={{flex: 1, justifyContent: 'center'}}>
                     <FullHistoryCard
@@ -28,7 +39,8 @@ export function ProductHistoryScreen()  {
                         <PrimaryHistoryCard
                             key={index}
                             vari={`${item.D2N}`}
-                            data={`${item.V} ${item.MN}`}
+                            data={`${item.V}`}
+                            unit={`${item.MN}`}
                         />
                     ))}
                         
