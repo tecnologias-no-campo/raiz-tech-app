@@ -1,0 +1,33 @@
+{
+  "data": {
+    "time": "2025-08-18T15:44:00Z",
+    "values": {
+      "altimeterSetting": 1022.18,
+      "cloudBase": null,
+      "cloudCeiling": null,
+      "cloudCover": 0,
+      "dewPoint": 10.8,
+      "freezingRainIntensity": 0,
+      "humidity": 47,
+      "precipitationProbability": 0,
+      "pressureSeaLevel": 1020.07,
+      "pressureSurfaceLevel": 923.24,
+      "rainIntensity": 0,
+      "sleetIntensity": 0,
+      "snowIntensity": 0,
+      "temperature": 22.6,
+      "temperatureApparent": 22.6,
+      "uvHealthConcern": 2,
+      "uvIndex": 6,
+      "visibility": 16,
+      "weatherCode": 1000,
+      "windDirection": 63,
+      "windGust": 7.8,
+      "windSpeed": 3.2
+    }
+  },
+  "location": {
+    "lat": -25.099,
+    "lon": -50.159
+  }
+}

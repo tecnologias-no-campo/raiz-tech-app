@@ -1,9 +1,8 @@
 import React from "react";
 import { ImageTextButton } from "../../components/ImageTextButton";
-import { FooterNav } from "../../components/FooterNav";
 import { MainHeader } from "../../components/MainHeader";
 import { MainStructure } from "../../components/MainStructure";
-import { ScrollView, View } from "react-native";
+import {View } from "react-native";
 import { styles } from "./style";
 
 //Navigator

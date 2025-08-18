@@ -13,7 +13,9 @@ export function ImageButton({source, backgroundColor, ...rest} : ImageButtonProp
         style={[styles.button,
             {backgroundColor: backgroundColor || "" },
             rest.style
-        ]}>
+        ]}
+        {...rest}
+        >
             <Image source={source} style={styles.image} />
         </TouchableOpacity>
     )

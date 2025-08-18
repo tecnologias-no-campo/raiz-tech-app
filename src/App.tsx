@@ -7,6 +7,7 @@ import { RootStackParamList } from './types/navigation';
 // Telas
 import { MenuHistoryScreen } from './screens/MenuHistoryScreen';
 import { ProductHistoryScreen } from './screens/ProductHistoryScreen';
+import { MenuWeatherScreen } from './screens/MenuWeatherScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,7 +20,7 @@ export default function App() {
   return (
       <SafeAreaProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='MenuHistoryScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
+          <Stack.Navigator initialRouteName='MenuWeatherScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
             <Stack.Screen
               name='MenuHistoryScreen'
               component={MenuHistoryScreen}
@@ -27,6 +28,10 @@ export default function App() {
             <Stack.Screen
               name='ProductHistoryScreen'
               component={ProductHistoryScreen}
+            />
+            <Stack.Screen
+              name='MenuWeatherScreen'
+              component={MenuWeatherScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
