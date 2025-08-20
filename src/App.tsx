@@ -8,6 +8,7 @@ import { RootStackParamList } from './types/navigation';
 import { MenuHistoryScreen } from './screens/MenuHistoryScreen';
 import { ProductHistoryScreen } from './screens/ProductHistoryScreen';
 import { MenuWeatherScreen } from './screens/MenuWeatherScreen';
+import { ForecastWeatherScreen } from './screens/ForecastWeatherScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,6 +33,10 @@ export default function App() {
             <Stack.Screen
               name='MenuWeatherScreen'
               component={MenuWeatherScreen}
+            />
+            <Stack.Screen
+              name='ForecastWeatherScreen'
+              component={ForecastWeatherScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>

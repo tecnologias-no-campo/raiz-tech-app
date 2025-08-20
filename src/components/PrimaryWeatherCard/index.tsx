@@ -21,8 +21,8 @@ export function PrimaryWeatherCard({icon, max, min, width, height, ...rest} : Pr
                     <Text style={styles.textStandard}>{max}</Text>
                 </View>
                 <View style={styles.textView}>
-                    <Text style={styles.textStrong}>MAX: </Text>
-                    <Text style={styles.textStandard}>{max}</Text>
+                    <Text style={styles.textStrong}>MIN: </Text>
+                    <Text style={styles.textStandard}>{min}</Text>
                 </View>
             </View>
         </StandardCard>

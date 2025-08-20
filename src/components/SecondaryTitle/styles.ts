@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
     title: {
         fontFamily: 'BebasNeue-Regular',
         fontSize: 28,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: 10        
     }
 });
