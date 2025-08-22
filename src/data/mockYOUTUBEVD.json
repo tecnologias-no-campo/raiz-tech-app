@@ -1,0 +1,88 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "etag": "abc123fakeetag",
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "etag1",
+      "id": "videoInPlaylistId1",
+      "snippet": {
+        "publishedAt": "2025-08-01T12:00:00Z",
+        "channelId": "UC123456789XYZ",
+        "title": "Como plantar trigo: dicas práticas",
+        "description": "Neste vídeo, você aprenderá técnicas fundamentais para o cultivo do trigo.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/videoId1/default.jpg"
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/videoId1/mqdefault.jpg"
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/videoId1/hqdefault.jpg"
+          }
+        },
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "videoId1"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "etag2",
+      "id": "videoInPlaylistId2",
+      "snippet": {
+        "publishedAt": "2025-08-05T12:00:00Z",
+        "channelId": "UC123456789XYZ",
+        "title": "Entendendo o solo antes do plantio",
+        "description": "A análise do solo é essencial para uma boa safra. Veja como fazer corretamente.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/videoId2/default.jpg"
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/videoId2/mqdefault.jpg"
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/videoId2/hqdefault.jpg"
+          }
+        },
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "videoId2"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "etag3",
+      "id": "videoInPlaylistId3",
+      "snippet": {
+        "publishedAt": "2025-08-10T12:00:00Z",
+        "channelId": "UC123456789XYZ",
+        "title": "Irrigação eficiente na agricultura",
+        "description": "Economize água e aumente a produtividade com essas técnicas de irrigação.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/videoId3/default.jpg"
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/videoId3/mqdefault.jpg"
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/videoId3/hqdefault.jpg"
+          }
+        },
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "videoId3"
+        }
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 3,
+    "resultsPerPage": 50
+  }
+}

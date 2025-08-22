@@ -51,12 +51,16 @@ export function ForecastWeatherScreen({navigation, route} : Props) {
 
             <ScrollView>
                 {dataToDisplay.map((day, index) => {
-                    const date = new Date(day.time).toLocaleDateString('pt-BR');
+                    const dateObj = new Date(day.time);
+                    const formatteDate = dateObj.toLocaleDateString('pt-br');
+                    const weekday = dateObj.toLocaleDateString('pt-br', {weekday: 'long'})
+
+                    const dateWithWeekday = `${weekday[0].toUpperCase() + weekday.slice(1)} - ${formatteDate}`
 
                     return (
                         <FullWeatherCard
                             key={index}
-                            date={date}
+                            date={dateWithWeekday}
                             max={day.values.temperatureMax}
                             min={day.values.temperatureMin}
                             weatherCode={day.values.weatherCodeMax}

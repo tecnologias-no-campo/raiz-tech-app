@@ -2,7 +2,7 @@ import { Button, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     text: {
-        fontSize: 48,
+        fontSize: 28,
         fontFamily: 'BebasNeue-Regular',
         textAlign: 'center',
         color: '#fdfdfd',
@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     button: {
         width: 300,
         height: 75,
+        marginVertical: 10
     },
 
     image: {

@@ -3,4 +3,5 @@ export type RootStackParamList = {
     ProductHistoryScreen: {product: string};
     MenuWeatherScreen: undefined;
     ForecastWeatherScreen: {period:  'today' | 'tomorrow' | 'nextdays' };
+    MenuVideoScreen: undefined;
 }

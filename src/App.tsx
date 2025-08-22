@@ -9,6 +9,7 @@ import { MenuHistoryScreen } from './screens/MenuHistoryScreen';
 import { ProductHistoryScreen } from './screens/ProductHistoryScreen';
 import { MenuWeatherScreen } from './screens/MenuWeatherScreen';
 import { ForecastWeatherScreen } from './screens/ForecastWeatherScreen';
+import { MenuVideoScreen } from './screens/MenuVideoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,7 +22,7 @@ export default function App() {
   return (
       <SafeAreaProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='MenuWeatherScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
+          <Stack.Navigator initialRouteName='MenuVideoScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
             <Stack.Screen
               name='MenuHistoryScreen'
               component={MenuHistoryScreen}
@@ -37,6 +38,10 @@ export default function App() {
             <Stack.Screen
               name='ForecastWeatherScreen'
               component={ForecastWeatherScreen}
+            />
+            <Stack.Screen
+              name='MenuVideoScreen'
+              component={MenuVideoScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
