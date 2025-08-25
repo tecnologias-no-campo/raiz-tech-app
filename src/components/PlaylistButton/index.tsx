@@ -5,12 +5,13 @@ import {styles} from "./styles";
 interface PlaylistButtonProps extends TouchableOpacityProps {
     backgroundImage: any,
     text: string,
+    onPress: any,
 }
 
-export function PlaylistButton({backgroundImage, text, ...rest} : PlaylistButtonProps)  {
+export function PlaylistButton({backgroundImage, text, onPress, ...rest} : PlaylistButtonProps)  {
 
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={onPress} style={styles.button}>
             <ImageBackground source={backgroundImage} style={styles.image} imageStyle={{borderRadius: 10}}>
                 <Text style={styles.text}>{text}</Text>
             </ImageBackground>          

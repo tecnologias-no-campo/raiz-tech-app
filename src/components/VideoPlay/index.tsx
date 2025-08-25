@@ -1,23 +1,25 @@
 import React from "react";
 import YoutubePlayer, {YoutubeIframeRef, YoutubeIframeProps} from 'react-native-youtube-iframe';
-import {View} from "react-native";
+import {View, Dimensions} from "react-native";
 import { styles } from "./styles";
 
 interface VideoPlayProps extends  Omit<YoutubeIframeProps, "width" | "height"> {
-    aspectRatio: number;
-    width: number;
-    
+    videoId: string,    
 }
 
-export function VideoPlay({aspectRatio, width, ...rest} : VideoPlayProps)  {
+export function VideoPlay({videoId, ...rest} : VideoPlayProps)  {
 
-    const height = Math.round(width / aspectRatio)
+    const screenWidth = Dimensions.get('window').width;
+    const cardWidth = screenWidth * 0.7;
+
+    const height = Math.round(cardWidth / (9/16))
 
     return (
-        <View style={[styles.container, {width: width, height: height}]}>
+        <View style={[styles.container, {width: cardWidth, height: height}]}>
             <YoutubePlayer
                 height={height}
-                width={width}
+                width={cardWidth}
+                videoId={videoId}
                  webViewProps={{
                     injectedJavaScript: `
                         var element = document.getElementsByClassName('container')[0];

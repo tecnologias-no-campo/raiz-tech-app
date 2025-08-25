@@ -5,19 +5,22 @@ export interface VideoItem  {
     videoId: string;
 }
 
-export interface PlaylistVideosResponse {
-    items: {
-        snippet: {
-            title: string;
-            description: string;
-            thumbnails: {
-                high: {
-                    url: string;
-                }
-            }
-            resourceId: {
-                videoId: string;
+export interface PlaylistVideoRawItem   {
+    id: string;
+    snippet: {
+        title: string;
+        description: string;
+        thumbnails: {
+            high: {
+                url: string;
             }
         }
-    }
+        resourceId: {
+            videoId: string;
+        };
+    };
+}
+
+export interface PlaylistVideosResponse {
+    items: PlaylistVideoRawItem[];
 }

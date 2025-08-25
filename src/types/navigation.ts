@@ -4,4 +4,6 @@ export type RootStackParamList = {
     MenuWeatherScreen: undefined;
     ForecastWeatherScreen: {period:  'today' | 'tomorrow' | 'nextdays' };
     MenuVideoScreen: undefined;
+    VideosVideoScreen: {idPlaylist: string};
+    PlayVideoScreen: {videoId: any};
 }
