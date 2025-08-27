@@ -3,7 +3,19 @@ import { View } from "react-native";
 import { ImageButton } from "../ImageButton";
 import {styles} from "./styles";
 
+//Navigation
+import {useNavigation} from '@react-navigation/native';
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/navigation";
+
 export function FooterNav()   {
+
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+    const goToGHome = () => {
+        navigation.navigate('HomeScreen');
+    }
+
     return (
         <View style={styles.container}>
             <ImageButton 
@@ -21,6 +33,7 @@ export function FooterNav()   {
                 <ImageButton 
                 backgroundColor="#ffffff"
                 source={require('../../assets/images/logos/logo-app-simple.png')}
+                onPress={goToGHome}
                 />
             </View>
             

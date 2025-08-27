@@ -38,7 +38,7 @@ export function MenuVideoScreen({navigation} : Props)   {
                         key={index}
                         backgroundImage={require('../../assets/images/pictures/teste.jpg')}
                         text={item.title}
-                        onPress={navigation.navigate("VideosVideoScreen", {idPlaylist: item.id})}
+                        onPress={() => navigation.navigate("VideosVideoScreen", {idPlaylist: item.id})}
                     />
                 ))}
 

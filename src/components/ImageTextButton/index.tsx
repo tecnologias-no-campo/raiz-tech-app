@@ -7,9 +7,10 @@ interface ImageTextButtonProps extends TouchableOpacityProps {
     text: string;
     mainColor: string;
     variant: 'primary' | 'secondary';
+    onPress: any;
 }
 
-export function ImageTextButton({source, text, mainColor, variant = 'primary', ...rest}: ImageTextButtonProps) {
+export function ImageTextButton({source, text, mainColor, variant, onPress, ...rest}: ImageTextButtonProps) {
 
     const screenWidth = Dimensions.get('window').width;
     const secondaryButttonWidth = screenWidth * 0.9;
@@ -33,7 +34,7 @@ export function ImageTextButton({source, text, mainColor, variant = 'primary', .
     ];
 
     return (
-        <TouchableOpacity style={buttonStyle} {...rest}>
+        <TouchableOpacity style={buttonStyle} onPress={onPress}>
             <Image source={source} style={styles.image} />
             <Text style={textStyle}>{text}</Text>
         </TouchableOpacity>

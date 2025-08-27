@@ -5,16 +5,17 @@ import { styles } from "./styles";
 interface ImageButtonProps extends TouchableOpacityProps {
     source?: any;
     backgroundColor?: string;
-    onPress: any;
+    onPress?: any;
 }
 
-export function ImageButton({source, backgroundColor, ...rest} : ImageButtonProps) {
+export function ImageButton({source, backgroundColor, onPress, ...rest} : ImageButtonProps) {
     return(
         <TouchableOpacity 
         style={[styles.button,
             {backgroundColor: backgroundColor || "" },
             rest.style
         ]}
+        onPress={onPress}
         {...rest}
         >
             <Image source={source} style={styles.image} />

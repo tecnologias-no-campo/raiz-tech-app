@@ -12,6 +12,7 @@ import { ForecastWeatherScreen } from './screens/ForecastWeatherScreen';
 import { MenuVideoScreen } from './screens/MenuVideoScreen';
 import { VideosVideoScreen } from './screens/VideosVideoScreen';
 import { PlayVideoScreen } from './screens/PlayVideoScreen';
+import { HomeScreen } from './screens/HomeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -24,7 +25,7 @@ export default function App() {
   return (
       <SafeAreaProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='VideosVideoScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
+          <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
             <Stack.Screen
               name='MenuHistoryScreen'
               component={MenuHistoryScreen}
@@ -52,6 +53,10 @@ export default function App() {
             <Stack.Screen
               name='PlayVideoScreen'
               component={PlayVideoScreen}
+            />
+            <Stack.Screen
+              name='HomeScreen'
+              component={HomeScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
