@@ -1,6 +1,7 @@
+//Imports padrão
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types/navigation';
 
@@ -16,6 +17,14 @@ import { HomeScreen } from './screens/HomeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const MyTheme = {
+  ...DefaultTheme, 
+  colors:{
+    ...DefaultTheme.colors,
+    background: '#ffffff'
+  }
+}
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
@@ -24,7 +33,7 @@ export default function App() {
 
   return (
       <SafeAreaProvider>
-        <NavigationContainer>
+        <NavigationContainer theme={MyTheme}>
           <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
             <Stack.Screen
               name='MenuHistoryScreen'
