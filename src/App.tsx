@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types/navigation';
+import { PaperProvider } from 'react-native-paper';
 
 // Telas
 import { MenuHistoryScreen } from './screens/MenuHistoryScreen';
@@ -14,6 +15,9 @@ import { MenuVideoScreen } from './screens/MenuVideoScreen';
 import { VideosVideoScreen } from './screens/VideosVideoScreen';
 import { PlayVideoScreen } from './screens/PlayVideoScreen';
 import { HomeScreen } from './screens/HomeScreen';
+import { LoginScreen } from './screens/LoginScreen';
+import { SignInScreen } from './screens/SignInScreen';
+import { SignUpScreen } from './screens/SignUpScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,44 +36,60 @@ export default function App() {
   });
 
   return (
-      <SafeAreaProvider>
-        <NavigationContainer theme={MyTheme}>
-          <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
-            <Stack.Screen
-              name='MenuHistoryScreen'
-              component={MenuHistoryScreen}
-            />
-            <Stack.Screen
-              name='ProductHistoryScreen'
-              component={ProductHistoryScreen}
-            />
-            <Stack.Screen
-              name='MenuWeatherScreen'
-              component={MenuWeatherScreen}
-            />
-            <Stack.Screen
-              name='ForecastWeatherScreen'
-              component={ForecastWeatherScreen}
-            />
-            <Stack.Screen
-              name='MenuVideoScreen'
-              component={MenuVideoScreen}
-            />
-            <Stack.Screen
-              name='VideosVideoScreen'
-              component={VideosVideoScreen}
-            />
-            <Stack.Screen
-              name='PlayVideoScreen'
-              component={PlayVideoScreen}
-            />
-            <Stack.Screen
-              name='HomeScreen'
-              component={HomeScreen}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider> 
+    <PaperProvider>
+        <SafeAreaProvider>
+          <NavigationContainer theme={MyTheme}>
+            <Stack.Navigator initialRouteName='SignUpScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
+              <Stack.Screen
+                name='MenuHistoryScreen'
+                component={MenuHistoryScreen}
+              />
+              <Stack.Screen
+                name='ProductHistoryScreen'
+                component={ProductHistoryScreen}
+              />
+              <Stack.Screen
+                name='MenuWeatherScreen'
+                component={MenuWeatherScreen}
+              />
+              <Stack.Screen
+                name='ForecastWeatherScreen'
+                component={ForecastWeatherScreen}
+              />
+              <Stack.Screen
+                name='MenuVideoScreen'
+                component={MenuVideoScreen}
+              />
+              <Stack.Screen
+                name='VideosVideoScreen'
+                component={VideosVideoScreen}
+              />
+              <Stack.Screen
+                name='PlayVideoScreen'
+                component={PlayVideoScreen}
+              />
+              <Stack.Screen
+                name='HomeScreen'
+                component={HomeScreen}
+              />
+              <Stack.Screen
+                name='LoginScreen'
+                component={LoginScreen}
+              />
+              <Stack.Screen
+                name='SignInScreen'
+                component={SignInScreen}
+              />
+              <Stack.Screen
+                name='SignUpScreen'
+                component={SignUpScreen}
+              />
+
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider> 
+    </PaperProvider>
+      
   );
 }
 

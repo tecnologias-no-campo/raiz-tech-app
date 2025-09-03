@@ -1,0 +1,15 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+    signInScreen_containar: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    signInScreen_form:   {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})

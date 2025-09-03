@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
         height: 60,
         justifyContent: 'center',
         borderRadius: 10,
+        marginVertical: 20
     },
     buttonSecondary: {
         width: 340,

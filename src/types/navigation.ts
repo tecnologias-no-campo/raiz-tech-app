@@ -7,4 +7,7 @@ export type RootStackParamList = {
     VideosVideoScreen: {idPlaylist: string};
     PlayVideoScreen: {videoId: any};
     HomeScreen: undefined;
+    LoginScreen: undefined;
+    SignInScreen: undefined;
+    SignUpScreen: undefined;
 }
