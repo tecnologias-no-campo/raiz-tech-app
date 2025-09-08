@@ -34,6 +34,7 @@ export function SignInScreen({navigation} : Props)  {
                         title="Entrar"
                         mainColor="#008000"
                         variant="primary"
+                        onPress={() => navigation.navigate("HomeScreen")}
                     />
                 </View>
             </LoginStructure>

@@ -22,11 +22,13 @@ export function LoginScreen({navigation} : Props)   {
                         title="Entrar"
                         mainColor="#008000"
                         variant="primary"
+                        onPress={() => navigation.navigate("SignInScreen")}
                     />
                     <SimpleButton
                         title="Registrar-se"
                         mainColor="#80A218"
                         variant="primary"
+                        onPress={() => navigation.navigate("SignUpScreen")}
                     />
                 </View>
             </LoginStructure>

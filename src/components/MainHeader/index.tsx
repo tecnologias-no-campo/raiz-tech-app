@@ -31,7 +31,6 @@ export function MainHeader({title, source, ...rest} : MainHeaderProps)  {
                 />
                 <DecorativeIcon
                 backgroundColor="#80A218"
-                source={source}
                 />
             </View>
         </View>

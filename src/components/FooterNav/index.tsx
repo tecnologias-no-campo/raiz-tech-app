@@ -1,7 +1,12 @@
+//Componente que define o menu inferior de navegação do aplicativo
+
+//Imports padrão
 import React from "react";
 import { View } from "react-native";
-import { ImageButton } from "../ImageButton";
 import {styles} from "./styles";
+
+//Components
+import { ImageButton } from "../ImageButton";
 
 //Navigation
 import {useNavigation} from '@react-navigation/native';
@@ -10,6 +15,7 @@ import { RootStackParamList } from "../../types/navigation";
 
 export function FooterNav()   {
 
+    //Lógica de retornar o Stack par tela inicial
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const goToGHome = () => {
@@ -17,19 +23,13 @@ export function FooterNav()   {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.footerNav_container}>
             <ImageButton 
                 source={require('../../assets/images/icons/general/settings-icon.png')}
             />
 
             <View
-            style={{
-                borderColor: '#008000',
-                borderWidth: 15,
-                borderRadius: 50,
-                alignSelf: 'center',
-                top: -15,
-            }}>
+            style={styles.footerNav_main_button}>
                 <ImageButton 
                 backgroundColor="#ffffff"
                 source={require('../../assets/images/logos/logo-app-simple.png')}

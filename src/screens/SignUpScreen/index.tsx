@@ -50,12 +50,16 @@ export function SignUpScreen({navigation} : Props)  {
                         mainColor="#80A218"
                         keyboardType="numeric"
                     />
-                    <DropDownMenu/>
+                    <DropDownMenu
+                        mainColor="#80A218"
+                        options={["Básico", "Médio", "Avançado"]}
+                    />
 
                     <SimpleButton
                         title="Registrar-se"
                         mainColor="#80A218"
                         variant="primary"
+                        onPress={() => navigation.navigate("HomeScreen")}
                     />
                     
                     

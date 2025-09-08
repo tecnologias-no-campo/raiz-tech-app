@@ -39,7 +39,14 @@ export default function App() {
     <PaperProvider>
         <SafeAreaProvider>
           <NavigationContainer theme={MyTheme}>
-            <Stack.Navigator initialRouteName='SignUpScreen' screenOptions={{headerShown: false, contentStyle: {backgroundColor: 'transparent'}, animation: 'none'}}>
+            <Stack.Navigator 
+              initialRouteName='LoginScreen' 
+              screenOptions={{
+                headerShown: false, 
+                contentStyle: {backgroundColor: 'transparent'}, 
+                animation: 'fade'
+              }}
+            >
               <Stack.Screen
                 name='MenuHistoryScreen'
                 component={MenuHistoryScreen}

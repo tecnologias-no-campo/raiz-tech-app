@@ -1,28 +1,33 @@
+//Componente que define o card completo de previsão do tempo
+
+//Imports padrão
 import React from "react";
 import {View, ViewProps, Text, Image, Dimensions} from "react-native";
+import {styles} from "./styles";
+
+//Components
 import { StandardCard } from "../StandardCard";
 import { PrimaryWeatherCard } from "../PrimaryWeatherCard";
 import { SecondaryWeatherCard } from "../SecondaryWeatherCard";
 import { SecondaryTitle } from "../SecondaryTitle";
-import {styles} from "./styles";
 
-//Type de exibição dos ícones de previsão
+//Esquema de exibição dos ícones de previsão
 import { getWeatherIcon } from "../../utils/weatherIconManage";
 
 interface FullWeatherCardProps extends ViewProps    {
-    date: string,
-    max: number,
-    min: number,
-    weatherCode: number,
-    evapotranspiration: number,
-    probabilityRain: number,
-    wind: number,
-    humidity: number,
-    cloud: number,
-    visibility: number,
+    date: string;
+    max: number;
+    min: number;
+    weatherCode: number;
+    evapotranspiration: number;
+    probabilityRain: number;
+    wind: number;
+    humidity: number;
+    cloud: number;
+    visibility: number;
 }
 
-export function FullWeatherCard({date, max, min, weatherCode, evapotranspiration, probabilityRain, wind, humidity, cloud, visibility, ...rest} : FullWeatherCardProps) {
+export function FullWeatherCard({date, max, min, weatherCode, evapotranspiration, probabilityRain, wind, humidity, cloud, visibility} : FullWeatherCardProps) {
 
     // Trabalhando a lógica de exibição dos ícones de previsão do tempo
     const iconMap = {
@@ -42,14 +47,23 @@ export function FullWeatherCard({date, max, min, weatherCode, evapotranspiration
 
     const conditionIcon = iconMap[weatherIconKey];
 
-    // Dimensões de tela
+    // Define dimensões da tela de forma dinâmica
     const screenWidth = Dimensions.get('window').width;
     const cardWidth = screenWidth * 0.9;
 
     return  (
-        <StandardCard  borderColor='#008000' borderWidth={3} width={cardWidth} style={[{justifyContent: 'center', paddingVertical: 20, marginVertical: 30}]}>
+        <StandardCard  
+            borderColor='#008000' 
+            borderWidth={3} 
+            width={cardWidth} 
+            style={[{
+                justifyContent: 'center', 
+                paddingVertical: 20, 
+                marginVertical: 30
+            }]}
+        >
             <SecondaryTitle title={date} color="#222222"/>
-            <View style={styles.mainSection}>
+            <View style={styles.fullWeatherCard_mainSection}>
                 <PrimaryWeatherCard 
                     icon={conditionIcon}
                     max={`${max} °C`}
@@ -64,12 +78,12 @@ export function FullWeatherCard({date, max, min, weatherCode, evapotranspiration
                     borderWidth={2} 
                     style={[{flexDirection: 'row', justifyContent: 'space-around'}]}
                 >               
-                    <Image style={styles.evapoIcon} source={require('../../assets/images/icons/weather/evapo-icon.png')}/>
-                    <Text style={styles.evapoText}>Evapotranspiração</Text> 
-                    <Text style={styles.evapoData}>{evapotranspiration}</Text>
+                    <Image style={styles.fullWeatherCard_evapoIcon} source={require('../../assets/images/icons/weather/evapo-icon.png')}/>
+                    <Text style={styles.fullWeatherCard_evapoText}>Evapotranspiração</Text> 
+                    <Text style={styles.fullWeatherCard_evapoData}>{evapotranspiration}</Text>
                 </StandardCard>
-                <View style={styles.secondarySection}>
-                    <View style={styles.secondarySectionAlign}>
+                <View style={styles.fullWeatherCard_secondarySection}>
+                    <View style={styles.fullWeatherCard_secondarySectionAlign}>
                         <SecondaryWeatherCard
                             icon={require('../../assets/images/icons/weather/percentage-icon.png')}
                             text='Probabilidade de chuva'
@@ -85,7 +99,7 @@ export function FullWeatherCard({date, max, min, weatherCode, evapotranspiration
                             height={90}
                         />
                     </View>
-                    <View  style={styles.secondarySectionAlign}>
+                    <View  style={styles.fullWeatherCard_secondarySectionAlign}>
                         <SecondaryWeatherCard
                             icon={require('../../assets/images/icons/weather/humidity-icon.png')}
                             text='Umidade Relativa (UR)'
@@ -106,3 +120,5 @@ export function FullWeatherCard({date, max, min, weatherCode, evapotranspiration
         </StandardCard>
     )
 }
+
+//Aqui tem algumas dimensões em porcentagem, porém elas são responsívas de acordo com a tela

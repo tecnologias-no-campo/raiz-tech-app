@@ -6,10 +6,11 @@ interface SimpleButtonProps extends TouchableOpacityProps {
     title: string;
     variant?: 'primary' | 'secondary';
     mainColor?: string;
+    onPress: any;
     
 }
 
-export function SimpleButton({title, variant, style, mainColor, ...rest}: SimpleButtonProps) {
+export function SimpleButton({title, variant, style, mainColor, onPress, ...rest}: SimpleButtonProps) {
     const isPrimary = variant === 'primary';
 
     const buttonStyles = isPrimary
@@ -22,7 +23,7 @@ export function SimpleButton({title, variant, style, mainColor, ...rest}: Simple
         : [styles.textSecondary, {color: mainColor || '#000'}];
 
     return (
-        <TouchableOpacity style={[buttonStyles, style]} {...rest}>
+        <TouchableOpacity onPress={onPress} style={[buttonStyles, style]} {...rest}>
             <Text style={textStyles}>{title}</Text>
         </TouchableOpacity>
     );   

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    input: {
+    formField_input: {
         width: 270,
         height: 60,
         borderWidth: 3,

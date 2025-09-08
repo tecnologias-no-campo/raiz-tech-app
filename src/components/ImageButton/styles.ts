@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    button: {
+    imageButton_button: {
         width: 50,
         height: 50,
         borderRadius: '50%',
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    image: {
+    imageButton_image: {
         width: 30, 
         height: 30,
         resizeMode: 'contain',

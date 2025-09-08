@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    button: {
+    decorativeIcon_button: {
         width: 60,
         height: 60,
         borderRadius: '50%',
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    image: {
+    decorativeIcon_image: {
         width: 40, 
         height: 40,
         resizeMode: 'contain',
