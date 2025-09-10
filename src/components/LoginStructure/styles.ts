@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container:{
+    loginStructure_container:{
         width: '80%',
         height: '80%',
         backgroundColor: '#FFFFFF',
@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    content: {
+    loginStructure_content: {
         width: '100%',
         height: '60%',
         flexDirection: 'column',
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    images: {
+    loginStructure_images: {
         height: '20%',   
         resizeMode: 'contain',    
     }

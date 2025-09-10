@@ -1,31 +1,31 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    icon:    {
+    primaryWeatherCard_icon:    {
         width: 90,
         height: 90,
         resizeMode: 'contain',
     },
 
-    infoView: {
+    primaryWeatherCard_infoView: {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
     },
 
-    textView:{
+    primaryWeatherCard_textView:{
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     }, 
 
-    textStrong: {
+    primaryWeatherCard_textStrong: {
         fontFamily: 'BebasNeue-Regular',
         fontSize: 28,
         color: '#222222',
     },
 
-    textStandard:    {
+    primaryWeatherCard_textStandard:    {
         fontSize: 28,
         fontFamily: 'Roboto-Regular',
         color: '#222222',

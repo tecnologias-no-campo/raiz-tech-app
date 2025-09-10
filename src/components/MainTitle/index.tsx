@@ -1,14 +1,17 @@
+//Comonente que define o estilo do título principal do aplicativo
+
+//Imports padrão
 import React from "react";
-import {Text, TextProps} from "react-native";
+import {Text} from "react-native";
 import {styles} from "./styles";
 
-interface MainTitleProps extends TextProps {
+interface MainTitleProps {
     title: string;
 };
 
-export function MainTitle( {title, ...rest} : MainTitleProps) {
+export function MainTitle( {title} : MainTitleProps) {
     return (
-        <Text style={styles.title}>
+        <Text style={styles.mainTitle_title}>
             {title}
         </Text>
     );

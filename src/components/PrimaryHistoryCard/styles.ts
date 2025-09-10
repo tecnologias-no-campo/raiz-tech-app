@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    title: {
+    primaryHistoryCard_title: {
         width: '100%',
         textAlign: 'center',
         color: '#008000',
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
     },
 
-    data: {
+    primaryHistoryCard_data: {
         width: '100%',
         textAlign: 'center',
         fontSize: 24,

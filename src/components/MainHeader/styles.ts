@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    externalContainer: {
+    mainHeader_externalContainer: {
         width: '90%',
         flexDirection: 'column',
     },
 
-    internalContainer: {
+    mainHeader_internalContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

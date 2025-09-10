@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
 
-    textHeader: {
+    secondaryWeatherCard_textHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -10,13 +10,13 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
 
-    icon: {
+    secondaryWeatherCard_icon: {
         width: 20,
         height: 20,
         resizeMode: 'contain'
     }, 
 
-    text: {
+    secondaryWeatherCard_text: {
         fontFamily: 'Roboto-Regular',
         fontSize: 14,
         color: '#222222',
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         textAlign: 'right'
     },
 
-    data:   {
+    secondaryWeatherCard_data:   {
         fontFamily: 'BebasNeue-Regular',
         fontSize: 30,
         color: '#222222',

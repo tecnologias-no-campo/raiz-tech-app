@@ -2,28 +2,30 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    buttonPrimary: {
+    simpleButton_buttonPrimary: {
         width: 270,
         height: 60,
         justifyContent: 'center',
         borderRadius: 10,
         marginVertical: 20
     },
-    buttonSecondary: {
+    
+    simpleButton_buttonSecondary: {
         width: 340,
         height: 55,
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         borderRadius: 10,
     },
-    textPrimary: {
+
+    simpleButton_textPrimary: {
         textAlign: 'center',
         fontSize: 28,
         fontFamily: 'Roboto-Regular',
         color: '#ffffff',
     },
 
-    textSecondary: {
+    simpleButton_textSecondary: {
         textAlign: 'center',
         fontSize: 28,
         fontFamily: 'BebasNeue-Regular',
