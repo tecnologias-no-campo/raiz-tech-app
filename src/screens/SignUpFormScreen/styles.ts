@@ -5,5 +5,9 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    signUpScreen_form: {
+        marginVertical: 30
     }
 })

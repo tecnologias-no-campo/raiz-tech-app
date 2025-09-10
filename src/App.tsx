@@ -17,6 +17,7 @@ import { PlayVideoScreen } from './screens/PlayVideoScreen';
 import { HomeScreen } from './screens/HomeScreen';
 import { LoginScreen } from './screens/LoginScreen';
 import { SignInScreen } from './screens/SignInScreen';
+import { SignUpFormScreen } from './screens/SignUpFormScreen';
 import { SignUpScreen } from './screens/SignUpScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -88,10 +89,13 @@ export default function App() {
                 component={SignInScreen}
               />
               <Stack.Screen
+                name='SignUpFormScreen'
+                component={SignUpFormScreen}
+              />
+              <Stack.Screen
                 name='SignUpScreen'
                 component={SignUpScreen}
               />
-
             </Stack.Navigator>
           </NavigationContainer>
         </SafeAreaProvider> 
