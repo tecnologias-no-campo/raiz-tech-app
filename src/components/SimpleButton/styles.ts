@@ -11,11 +11,12 @@ export const styles = StyleSheet.create({
     },
     
     simpleButton_buttonSecondary: {
-        width: 340,
+        width: 300,
         height: 55,
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         borderRadius: 10,
+         marginVertical: 10
     },
 
     simpleButton_textPrimary: {

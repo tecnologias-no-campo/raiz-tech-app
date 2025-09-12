@@ -9,9 +9,9 @@ interface MainTextProps extends TextProps {
     color: any;
 }
 
-export function MainText({color, children} : MainTextProps)    {
+export function MainText({color, children, ...rest} : MainTextProps)    {
     return  (
-        <Text style={[styles.mainText_text, {color: color}]}>
+        <Text style={[styles.mainText_text, {color: color}, rest.style]}>
             {children}
         </Text>
     )

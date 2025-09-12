@@ -19,6 +19,10 @@ import { LoginScreen } from './screens/LoginScreen';
 import { SignInScreen } from './screens/SignInScreen';
 import { SignUpFormScreen } from './screens/SignUpFormScreen';
 import { SignUpScreen } from './screens/SignUpScreen';
+import { ProfileScreen } from './screens/ProfileScreen';
+import { SettingsScreen } from './screens/SettingsScreen';
+import { AboutScreen } from './screens/AboutScreen';
+import { SupportScreen } from './screens/SupportScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -95,6 +99,22 @@ export default function App() {
               <Stack.Screen
                 name='SignUpScreen'
                 component={SignUpScreen}
+              />
+              <Stack.Screen
+                name='ProfileScreen'
+                component={ProfileScreen}
+              />
+              <Stack.Screen
+                name='SettingsScreen'
+                component={SettingsScreen}
+              />
+              <Stack.Screen
+                name='AboutScreen'
+                component={AboutScreen}
+              />
+              <Stack.Screen
+                name='SupportScreen'
+                component={SupportScreen}
               />
             </Stack.Navigator>
           </NavigationContainer>

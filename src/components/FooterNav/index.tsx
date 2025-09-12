@@ -22,10 +22,19 @@ export function FooterNav()   {
         navigation.navigate('HomeScreen');
     }
 
+    const goToProfile = () => {
+        navigation.navigate('ProfileScreen')
+    }
+
+    const goToSettings = () => {
+        navigation.navigate('SettingsScreen')
+    }
+
     return (
         <View style={styles.footerNav_container}>
             <ImageButton 
                 source={require('../../assets/images/icons/general/settings-icon.png')}
+                onPress={goToSettings}
             />
 
             <View
@@ -40,6 +49,7 @@ export function FooterNav()   {
 
             <ImageButton
                 source={require('../../assets/images/icons/general/person-icon.png')}
+                onPress={goToProfile}
             />
         </View>
     )

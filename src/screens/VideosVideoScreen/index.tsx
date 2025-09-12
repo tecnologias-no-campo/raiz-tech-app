@@ -2,6 +2,7 @@
 import React from "react";
 import { ScrollView } from "react-native";
 
+
 // Components
 import { MainStructure } from "../../components/MainStructure";
 import { MainHeader } from "../../components/MainHeader";
