@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    background: {
+    homeScreen_background: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         width: '100%',
     },
 
-    overlay:{
+    homeScreen_overlay:{
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
         justifyContent: 'center',
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         width: '100%',
     },
 
-    align:  {
+    homeScreen_align:  {
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',

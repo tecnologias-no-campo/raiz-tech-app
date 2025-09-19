@@ -1,3 +1,4 @@
+//Tela que tem o formulário de login no aplicativo
 //Imports padrão
 import React from "react";
 import { View } from "react-native";

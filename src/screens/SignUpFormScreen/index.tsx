@@ -1,3 +1,4 @@
+//Tela que apresenta o formulário de cadastro no aplicativo, com informações pessoais dos produtores
 //Imports padrão
 import React from "react";
 import { View, ScrollView } from "react-native";
@@ -65,9 +66,7 @@ export function SignUpFormScreen({navigation} : Props)  {
                         mainColor="#80A218"
                         variant="primary"
                         onPress={() => navigation.navigate("HomeScreen")}
-                    />
-                    
-                    
+                    />                   
                 </ScrollView>
             </LoginStructure>
         </View>

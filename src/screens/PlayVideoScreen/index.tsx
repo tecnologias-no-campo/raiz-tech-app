@@ -1,6 +1,7 @@
+//Tala onde aparece o player do youtube para assistir os vídeos vindos da API
 //Imports padrões
 import React from "react";
-import { View, Dimensions } from "react-native";
+import { View } from "react-native";
 
 //Components
 import { MainStructure } from "../../components/MainStructure";
@@ -13,10 +14,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PlayVideoScreen'>
 
-export function PlayVideoScreen({navigation, route} : Props)   {
+export function PlayVideoScreen({route} : Props)   {
 
     // Pegando o id do video
-
     const {videoId} = route.params;
 
     return (

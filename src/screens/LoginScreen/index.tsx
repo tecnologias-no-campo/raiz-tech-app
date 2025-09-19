@@ -1,3 +1,4 @@
+//Tela de entrada no aplicativo, é a primeira tela que aparece ao entrar a primeira vez no app
 //Imports padrão
 import React from "react";
 import { View } from "react-native";

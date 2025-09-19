@@ -1,3 +1,4 @@
+//Tela que apresenta o perfil do usuário, trazendo também os seus dados de cadastro
 //Imports padrão
 import React from "react";
 import { View, Image, Dimensions, ScrollView } from "react-native";
@@ -9,12 +10,11 @@ import { MainText } from "../../components/MainText";
 import { SimpleButton } from "../../components/SimpleButton";
 import { MainHeader } from "../../components/MainHeader";
 import { MainStructure } from "../../components/MainStructure";
+import { SecondaryTitle } from "../../components/SecondaryTitle";
 
 //Navigator
 import { RootStackParamList } from "../../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { SecondaryTitle } from "../../components/SecondaryTitle";
-
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ProfileScreen'>
 

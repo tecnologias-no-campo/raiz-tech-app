@@ -1,3 +1,4 @@
+// Tela de menu para acessar os vídeos. Essa tela traz cada uma das playlists que vão estar no canal do youtube
 // Imports padrão
 import React from "react";
 import { ScrollView } from "react-native";
@@ -19,6 +20,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MenuVideoScreen'>
 
 export function MenuVideoScreen({navigation} : Props)   {
 
+    //Fazendo o mock de dados de playlists
     const playlists : PlaylistItem[] = (mock_videos as PlaylistResponse).items.map(item => ({
         id: item.id,
         title: item.snippet.title,
@@ -41,8 +43,7 @@ export function MenuVideoScreen({navigation} : Props)   {
                         onPress={() => navigation.navigate("VideosVideoScreen", {idPlaylist: item.id})}
                     />
                 ))}
-
-                
+               
             </ScrollView>
         </MainStructure>
     )

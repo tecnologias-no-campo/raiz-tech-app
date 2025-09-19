@@ -1,3 +1,4 @@
+//Tela de cadastro no aplicativo que apresneta informações referentes a conta dos usuários: email e senha
 //Imports padrão
 import React from "react";
 import { View } from "react-native";

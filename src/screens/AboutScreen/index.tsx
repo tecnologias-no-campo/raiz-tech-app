@@ -1,8 +1,11 @@
+//Essa tela é a tela referente a como usar o aplicativo
 //Improts padrão
 import React from "react";
 import { View } from "react-native";
-import YoutubePlayer from "react-native-youtube-iframe";
 import { styles } from "./styles";
+
+//Youtube imports
+import YoutubePlayer from "react-native-youtube-iframe";
 
 //Components
 import { MainStructure } from "../../components/MainStructure";
@@ -15,7 +18,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AboutScreen'>
 
-export function AboutScreen({navigation} : Props)   {
+export function AboutScreen()   {
     return(
         <MainStructure>
             <MainHeader

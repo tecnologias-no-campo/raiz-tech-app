@@ -1,4 +1,5 @@
-//Improts padrão
+//Tela de suporte que permite enviar um email para o projeto no caso de dúvidas e dificuldades com o app
+//Imports padrão
 import React from "react";
 import { View, Linking } from "react-native";
 import { styles } from "./styles";
@@ -15,7 +16,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SupportScreen'>
 
-export function SupportScreen({navigation} : Props)   {
+export function SupportScreen()   {
 
     const handleEmail = () => {
         Linking.openURL("mailto:tecnologiasnocampo@uepg.br")

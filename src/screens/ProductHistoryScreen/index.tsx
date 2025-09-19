@@ -1,10 +1,16 @@
+//Tela que exibe o histórico de um produto em específico
+//Imports padrão
 import React from "react";
+import { View } from "react-native";
+import { styles } from "./styles";
+
+//Components
 import { PrimaryHistoryCard } from "../../components/PrimaryHistoryCard";
 import { FullHistoryCard } from "../../components/FullHistoryCard";
 import { MainStructure } from "../../components/MainStructure";
 import { MainHeader } from "../../components/MainHeader";
-import { View, ScrollView } from "react-native";
-import { styles } from "./styles";
+
+//Mock de dados
 import { SidraResponse } from "../../types/historyType";
 import mockData from "../../data/mockSIDRA.json";
 
@@ -17,7 +23,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ProductHistoryScreen'>
 
-export function ProductHistoryScreen({navigation, route} : Props)  {
+export function ProductHistoryScreen({route} : Props)  {
+
+    //Mock de dados no formato JSON
     const data : SidraResponse = mockData;
     const itens = data.ArrayOfValorDescritoPorSuasDimensoes.ValorDescritoPorSuasDimensoes;
 

@@ -1,7 +1,7 @@
+// Tela que apresenta os vídeos que existem em cada uma das playlists
 // Importações padrão
 import React from "react";
 import { ScrollView } from "react-native";
-
 
 // Components
 import { MainStructure } from "../../components/MainStructure";
@@ -23,6 +23,7 @@ export function VideosVideoScreen({navigation, route} : Props) {
     //Pega a tag da playlist para trazer a playlist correta (Vai ser usado quando for integrado a API)
     // const {idPlaylist} = route.params;
 
+    //Mock de dados
     const videosPlaylist : VideoItem[] = (mock_videos as PlaylistVideosResponse).items.map(item => ({
         title: item.snippet.title,
         description: item.snippet.description,
@@ -38,7 +39,6 @@ export function VideosVideoScreen({navigation, route} : Props) {
             />
 
             <ScrollView style={{marginTop: 20}}>
-
                 {videosPlaylist.map((item, index)   => (
                     <VideoCard
                         key={index}

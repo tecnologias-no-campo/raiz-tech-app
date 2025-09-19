@@ -1,3 +1,4 @@
+//Tela inicial das configurações a qual apresenta as configurações existentes no app
 //Imports padrão
 import React from "react";
 import { View } from "react-native";

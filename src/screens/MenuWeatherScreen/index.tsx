@@ -1,3 +1,5 @@
+//Tela de menu para acessar a previsão do tempo, além de mostrar a previsão em tempo real
+//Imports padrão
 import React from "react";
 import { styles } from "./styles";
 import { View, Dimensions, ScrollView } from "react-native";
@@ -22,6 +24,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'MenuWeatherScreen'>
 
 export function MenuWeatherScreen({navigation} : Props)  {
 
+    //Define dimensões responsivas nas telas
     const screenWidth = Dimensions.get('window').width;
     const cardWidth = screenWidth * 0.9;
 
@@ -38,7 +41,16 @@ export function MenuWeatherScreen({navigation} : Props)  {
 
             <View  style={{flex: 1, justifyContent: 'center'}}>
 
-                <StandardCard   borderColor='#008000' borderWidth={3} width={cardWidth} height={250} style={[{justifyContent: 'center', paddingVertical: 20, marginVertical: 20}]}>
+                <StandardCard   
+                    borderColor='#008000' 
+                    borderWidth={3} 
+                    width={cardWidth} 
+                    height={250} 
+                    style={[{
+                        justifyContent: 'center', 
+                        paddingVertical: 20, 
+                        marginVertical: 20
+                    }]}>
                     <SecondaryTitle
                         title='AGORA'
                         color="#008000"
