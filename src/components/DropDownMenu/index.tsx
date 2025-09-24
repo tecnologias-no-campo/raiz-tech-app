@@ -12,9 +12,10 @@ import { FormField } from "../FormField";
 interface DropDownMenuProps {
     mainColor: string;
     options: string[];
+    onSelect: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function DropDownMenu({mainColor, options} : DropDownMenuProps)  {
+export function DropDownMenu({mainColor, options, onSelect} : DropDownMenuProps)  {
 
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState("Nível de uso de tecnologia");
@@ -47,6 +48,7 @@ export function DropDownMenu({mainColor, options} : DropDownMenuProps)  {
                         titleStyle={styles.dropDownMenu_menu_item_title}
                         onPress={() => {
                             setSelected(option);
+                            onSelect(option);
                             closeMenu();
                         }}
                         title={option}

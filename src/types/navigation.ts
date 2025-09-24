@@ -9,7 +9,7 @@ export type RootStackParamList = {
     HomeScreen: undefined;
     LoginScreen: undefined;
     SignInScreen: undefined;
-    SignUpFormScreen: undefined;
+    SignUpFormScreen: {userId: string};
     SignUpScreen: undefined;
     ProfileScreen: undefined;
     SettingsScreen: undefined;
