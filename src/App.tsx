@@ -1,5 +1,6 @@
 //Imports padrão
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -43,12 +44,13 @@ export default function App() {
   return (
     <PaperProvider>
         <SafeAreaProvider>
+          <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
           <NavigationContainer theme={MyTheme}>
             <Stack.Navigator 
               initialRouteName='LoginScreen' 
               screenOptions={{
                 headerShown: false, 
-                contentStyle: {backgroundColor: 'transparent'}, 
+                contentStyle: {backgroundColor: "#ffffff"}, 
                 animation: 'fade'
               }}
             >

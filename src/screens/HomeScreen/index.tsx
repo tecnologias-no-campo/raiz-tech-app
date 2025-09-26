@@ -1,7 +1,7 @@
 //Componente que define a tela inicial do aplicativo, com direcionamento para as suas funcionalidades
 //Imports padrão
 import React from "react";
-import { View, ImageBackground, StatusBar } from "react-native";
+import { View, ImageBackground } from "react-native";
 import { styles } from "./styles";
 
 //Components
@@ -19,11 +19,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>
 export function HomeScreen({navigation} : Props)    {
     return (
         <>
-        <StatusBar
-            translucent
-            backgroundColor={"transparent"}
-            barStyle={"light-content"}
-        />
             <ImageBackground
                 source={require('../../assets/images/pictures/teste.jpg')}
                 style={styles.homeScreen_background}
