@@ -34,7 +34,11 @@ export default {
         projectId: "9284345e-211d-4d0c-9427-68c1116df90d"
       },
       supabaseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL,
-      supabaseAnonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY
+      supabaseAnonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
+
+      //Youtube keys
+      youtubeApiKey: process.env.EXPO_PUBLIC_YOUTUBE_API_KEY,
+      youtubeChannelId: process.env.EXPO_PUBLIC_YOUTUBE_CHANNEL_ID,
     }
   }
 }

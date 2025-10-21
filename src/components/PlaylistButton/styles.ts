@@ -9,9 +9,17 @@ export const styles = StyleSheet.create({
     },
 
     playlistButton_button: {
+        display: "flex",
         width: 300,
         height: 75,
-        marginVertical: 10
+        marginVertical: 10,
+        backgroundColor: "#F0B705",
+        borderRadius: 15,
+        alignItems: "center",
+        justifyContent: "center",
+        elevation: 10,
+        shadowOpacity: 0.4,
+        shadowRadius: 5,
     },
 
     playlistButton_image: {

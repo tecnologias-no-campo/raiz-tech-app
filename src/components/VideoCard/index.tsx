@@ -19,18 +19,17 @@ interface VideoCardProps  {
 
 export function VideoCard({image, title, text, onPress} : VideoCardProps)   {
     return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity style={styles.videoCard_shadow}  onPress={onPress}>
             <StandardCard 
+                background="transparent"
                 borderColor="#80A218" 
                 width={300} 
                 borderWidth={3} 
-                style={{
-                    marginBottom: 35
-                }}
+            
             >
                 <Image style={styles.videoCard_image} source={{uri: image}}/>
                 <View style={styles.videoCard_content}>
-                    <SecondaryTitle title={title} color="#008000"/>
+                    <SecondaryTitle title={title} color="#F0B705"/>
                     <MainText color="#636363">{text}</MainText>
                 </View>
             </StandardCard>

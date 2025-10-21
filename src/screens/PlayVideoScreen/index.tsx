@@ -22,7 +22,7 @@ export function PlayVideoScreen({route} : Props)   {
     return (
         <MainStructure>
             <MainHeader
-                title="VÍDEO"
+                title="ASSISTIR"
                 source={require('../../assets/images/icons/general/play-button-icon.png')}
             />
 

@@ -2,11 +2,11 @@
 
 //Imports padrão
 import React from "react";
-import {ImageBackground, Text, TouchableOpacity, TouchableOpacityProps} from "react-native";
+import {Text, TouchableOpacity} from "react-native";
 import {styles} from "./styles";
 
 interface PlaylistButtonProps   {
-    backgroundImage: any;
+    backgroundImage?: any;
     text: string;
     onPress: any;
 }
@@ -14,10 +14,12 @@ interface PlaylistButtonProps   {
 export function PlaylistButton({backgroundImage, text, onPress} : PlaylistButtonProps)  {
 
     return (
+       
         <TouchableOpacity onPress={onPress} style={styles.playlistButton_button}>
-            <ImageBackground source={backgroundImage} style={styles.playlistButton_image} imageStyle={{borderRadius: 10}}>
-                <Text style={styles.playlistButton_text}>{text}</Text>
-            </ImageBackground>          
+            <Text style={styles.playlistButton_text}>{text}</Text>        
         </TouchableOpacity>
+        
+            
+        
     )
 }
