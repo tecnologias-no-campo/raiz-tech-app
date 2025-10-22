@@ -46,33 +46,33 @@ export function SignInScreen({navigation} : Props)  {
     }
 
     return (
-        <View style={styles.signInScreen_containar}>
-            <LoginStructure>
-                <View style={styles.signInScreen_form}>
-                    <FormField
-                        label="Email"
-                        mainColor="#008000"
-                        keyboardType="email-address"
-                        value={email}
-                        onChangeText={setEmail}
-                    />
-                     <FormField
-                        label="Senha"
-                        mainColor="#008000"
-                        keyboardType="default"
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                    <SimpleButton
-                        title={loading ? "Entrando..." : "Entrar"}
-                        mainColor="#008000"
-                        variant="primary"
-                        onPress={handleSignIn}
-                        disabled={loading}
-                    />
-                </View>
-            </LoginStructure>
-        </View>
+            <View style={styles.signInScreen_containar}>
+                <LoginStructure>
+                    <View style={styles.signInScreen_form}>
+                        <FormField
+                            label="Email"
+                            mainColor="#008000"
+                            keyboardType="email-address"
+                            value={email}
+                            onChangeText={setEmail}
+                        />
+                        <FormField
+                            label="Senha"
+                            mainColor="#008000"
+                            keyboardType="default"
+                            secureTextEntry={true}
+                            value={password}
+                            onChangeText={setPassword}
+                        />
+                        <SimpleButton
+                            title={loading ? "Entrando..." : "Entrar"}
+                            mainColor="#008000"
+                            variant="primary"
+                            onPress={handleSignIn}
+                            disabled={loading}
+                        />
+                    </View>
+                </LoginStructure>
+            </View>
     )
 }

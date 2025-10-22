@@ -21,7 +21,8 @@ export default {
         backgroundColor: "#ffffff"
       },
       edgeToEdgeEnabled: true,
-      package: "com.guilherme_daneliv.raiztech"
+      package: "com.guilherme_daneliv.raiztech",
+      softwareKeyboardLayoutMode: "pan"
     },
     web: {
       favicon: "./assets/favicon.png"

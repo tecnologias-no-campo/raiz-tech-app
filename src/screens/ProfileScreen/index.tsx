@@ -87,7 +87,7 @@ export function ProfileScreen({navigation} : Props) {
             <View style={styles.profileScreen_container}>
 
                 <StandardCard
-                    borderColor="#008000"
+                    borderColor="#80A218"
                     width={cardWidth}
                     borderWidth={3}
                     height={'70%'}
@@ -96,23 +96,17 @@ export function ProfileScreen({navigation} : Props) {
                     <View style={styles.profileScreen_headerProfile}>
                         <SecondaryTitle
                             title={produtor?.nome_completo || "Usuário"}
-                            color="#008000"
-                        />
-
-                        <Image
-                            style={styles.profileScreen_image}
-                            source={require('../../assets/images/pictures/teste.jpg')}
-                            borderRadius={50}
+                            color="#F0B705"
                         />
                     </View> 
                     
                     {produtor ? (
                         <View style={styles.profileScreen_contentProfile}>
-                        <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Fezenda: {produtor.nome_fazenda}</MainText>
+                        <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Fazenda: {produtor.nome_fazenda}</MainText>
                         <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Local:  {produtor.cidade}</MainText>
                         <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Área total: {produtor.area_total_ha}</MainText>
                         <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Tipo da produção: {produtor.tipo_producao}</MainText>
-                        <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Pricipal Produto: {produtor.principal_produto}</MainText>
+                        <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Principal Produto: {produtor.principal_produto}</MainText>
                         <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Nº de trabalhadores: {produtor.numero_trabalhadores}</MainText>
                         <MainText style={styles.profileScreen_contentProfile_item} color='#636363'>Nível de tecnologia: {produtor.nivel_tecnologia}</MainText>
                     </View>   

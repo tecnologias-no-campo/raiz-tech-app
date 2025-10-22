@@ -10,4 +10,15 @@ export const styles = StyleSheet.create({
         marginVertical: 10,
         color: '#888888',
     },
+
+    formField_label:    {
+        fontSize: 18,
+        fontWeight: "600",
+    },
+
+    formField_error:    {
+        fontSize: 12,
+        color: "red",
+        marginTop: 4,
+    }
 });

@@ -62,75 +62,75 @@ export function SignUpFormScreen({ navigation, route }: Props) {
     }
 
     return (
-        <>
-        <View style={styles.signUpScreen_container}>
-            <LoginStructure>
-                <ScrollView contentContainerStyle={styles.signUpScreen_form}>
-                    <FormField
-                        label="Nome completo"
-                        mainColor="#80A218"
-                        keyboardType="default"
-                        onChangeText={setNomeCompleto}
-                        value={nomeCompleto}
-                    />
-                    <FormField
-                        label="Fazenda"
-                        mainColor="#80A218"
-                        keyboardType="default"
-                        onChangeText={setFazenda}
-                        value={fazenda}
-                    />
-                    <FormField
-                        label="Cidade"
-                        mainColor="#80A218"
-                        keyboardType="default"
-                        onChangeText={setCidade}
-                        value={cidade}
-                    />
-                    <FormField
-                        label="Área total"
-                        mainColor="#80A218"
-                        keyboardType="numeric"
-                        onChangeText={setAreaTotal}
-                        value={areaTotal}
-                    />
-                    <FormField
-                        label="Tipo da produção"
-                        mainColor="#80A218"
-                        keyboardType="default"
-                        onChangeText={setTipoProducao}
-                        value={tipoProducao}
-                    />
-                    <FormField
-                        label="Principal produto"
-                        mainColor="#80A218"
-                        keyboardType="default"
-                        onChangeText={setPrincipalProduto}
-                        value={principalProduto}
-                    />
-                    <FormField
-                        label="Número de trabalhadores"
-                        mainColor="#80A218"
-                        keyboardType="numeric"
-                        onChangeText={setNumeroTrabalhadores}
-                        value={numeroTrabalhadores}
-                    />
-                    <DropDownMenu
-                        mainColor="#80A218"
-                        options={["Básico", "Médio", "Avançado"]}
-                        onSelect={setNivelTecnologia}
-                    />
+            <>
+            <View style={styles.signUpScreen_container}>
+                <LoginStructure>
+                    <ScrollView contentContainerStyle={styles.signUpScreen_form}>
+                        <FormField
+                            label="Nome completo"
+                            mainColor="#80A218"
+                            keyboardType="default"
+                            onChangeText={setNomeCompleto}
+                            value={nomeCompleto}
+                        />
+                        <FormField
+                            label="Fazenda"
+                            mainColor="#80A218"
+                            keyboardType="default"
+                            onChangeText={setFazenda}
+                            value={fazenda}
+                        />
+                        <FormField
+                            label="Cidade"
+                            mainColor="#80A218"
+                            keyboardType="default"
+                            onChangeText={setCidade}
+                            value={cidade}
+                        />
+                        <FormField
+                            label="Área total"
+                            mainColor="#80A218"
+                            keyboardType="numeric"
+                            onChangeText={setAreaTotal}
+                            value={areaTotal}
+                        />
+                        <FormField
+                            label="Tipo da produção"
+                            mainColor="#80A218"
+                            keyboardType="default"
+                            onChangeText={setTipoProducao}
+                            value={tipoProducao}
+                        />
+                        <FormField
+                            label="Principal produto"
+                            mainColor="#80A218"
+                            keyboardType="default"
+                            onChangeText={setPrincipalProduto}
+                            value={principalProduto}
+                        />
+                        <FormField
+                            label="Número de trabalhadores"
+                            mainColor="#80A218"
+                            keyboardType="numeric"
+                            onChangeText={setNumeroTrabalhadores}
+                            value={numeroTrabalhadores}
+                        />
+                        <DropDownMenu
+                            mainColor="#80A218"
+                            options={["Básico", "Médio", "Avançado"]}
+                            onSelect={setNivelTecnologia}
+                        />
 
-                    <SimpleButton
-                        title={loading ? "Salvando..." : "Registrar-se"}
-                        mainColor="#80A218"
-                        variant="primary"
-                        onPress={handleSignUpFormSubmit}
-                        disabled={loading}
-                    />
-                </ScrollView>
-            </LoginStructure>
-       </View>
-    </>
+                        <SimpleButton
+                            title={loading ? "Salvando..." : "Registrar-se"}
+                            mainColor="#80A218"
+                            variant="primary"
+                            onPress={handleSignUpFormSubmit}
+                            disabled={loading}
+                        />
+                    </ScrollView>
+                </LoginStructure>
+        </View>
+        </>
     )
 }

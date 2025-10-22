@@ -51,28 +51,30 @@ export function SignUpScreen({ navigation }: Props) {
     return (
         <View style={styles.signUpScreen_container}>
             <LoginStructure>
-                <FormField
-                    label="Email"
-                    mainColor="#80A218"
-                    keyboardType="email-address"
-                    onChangeText={setEmail}
-                    value={email}
-                />
-                <FormField
-                    label="Senha"
-                    mainColor="#80A218"
-                    keyboardType="default"
-                    secureTextEntry={true}
-                    onChangeText={setPassword}
-                    value={password}
-                />
-                <SimpleButton
-                    title={loading ? 'Criando conta...' : "Continuar"}
-                    mainColor="#80A218"
-                    variant="primary"
-                    onPress={handleSignUp}
-                    disabled={loading}
-                />
+                <View style={styles.signInScreen_form}>
+                    <FormField
+                        label="Email"
+                        mainColor="#80A218"
+                        keyboardType="email-address"
+                        onChangeText={setEmail}
+                        value={email}
+                    />
+                    <FormField
+                        label="Senha"
+                        mainColor="#80A218"
+                        keyboardType="default"
+                        secureTextEntry={true}
+                        onChangeText={setPassword}
+                        value={password}
+                    />
+                    <SimpleButton
+                        title={loading ? 'Criando conta...' : "Continuar"}
+                        mainColor="#80A218"
+                        variant="primary"
+                        onPress={handleSignUp}
+                        disabled={loading}
+                    />
+                </View>
             </LoginStructure>
         </View>
     );

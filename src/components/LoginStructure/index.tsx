@@ -16,7 +16,7 @@ export function LoginStructure({children, style, ...rest}: LoginStructureProps) 
             <View  style={styles.loginStructure_content}>
                 {children}
             </View>
-            <Image style={styles.loginStructure_images} source={require('../../assets/images/logos/logo-project.png')}/>
+            {/* <Image style={styles.loginStructure_images} source={require('../../assets/images/logos/logo-project.png')}/> */}
         </View>
     )
 }

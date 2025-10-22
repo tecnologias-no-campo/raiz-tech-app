@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     },
 
     signUpScreen_form: {
-        marginVertical: 30
+        marginVertical: 30,
+        paddingBottom: 40
     }
 })

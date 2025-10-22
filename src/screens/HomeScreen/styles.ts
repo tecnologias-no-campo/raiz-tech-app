@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
 
     homeScreen_overlay:{
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
@@ -23,5 +23,18 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         width: '80%',
         marginVertical: 40
+    },
+
+    homeScreen_contentAlign:    {
+        width: '100%',
+        alignItems: "center",
+        height: "70%",
+        justifyContent: "space-around",
+    }, 
+
+    homeScreen_text:    {
+        textShadowColor: "#000",
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 3,
     }
 });

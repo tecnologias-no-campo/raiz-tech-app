@@ -5,5 +5,11 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    signInScreen_form:   {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })

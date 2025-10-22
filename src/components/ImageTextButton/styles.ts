@@ -5,6 +5,9 @@ export const styles = StyleSheet.create({
         width: 270,
         height: 60,
         borderRadius: 10,
+        elevation: 50,
+        shadowOpacity: 0.4,
+        shadowRadius: 5,
     },
 
     imageTextButton_secondaryButton: {
