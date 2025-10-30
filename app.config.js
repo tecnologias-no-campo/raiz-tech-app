@@ -40,6 +40,9 @@ export default {
       //Youtube keys
       youtubeApiKey: process.env.EXPO_PUBLIC_YOUTUBE_API_KEY,
       youtubeChannelId: process.env.EXPO_PUBLIC_YOUTUBE_CHANNEL_ID,
+
+      // +++ ADICIONE ESTA LINHA +++
+      tomorrowApiKey: process.env.EXPO_PUBLIC_TOMORROW_API_KEY,
     }
   }
 }
