@@ -1,154 +1,24 @@
-// MenuWeatherScreen.tsx
-// Tela de menu para acessar a previsão + realtime com cache offline (AsyncStorage + NetInfo)
-
-import React, { useState, useEffect, useMemo } from "react";
-import { View, Dimensions, ScrollView, Text, ActivityIndicator, TouchableOpacity } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import NetInfo from "@react-native-community/netinfo";
+// screens/MenuWeatherScreen/index.tsx
+import React from "react";
+import { View, Dimensions, ScrollView, Text, ActivityIndicator } from "react-native";
 import { styles } from "./styles";
-
-// Types
-import { WeatherRealtime } from "../../types/weatherRtType";
-
-// Components
 import { ImageTextButton } from "../../components/ImageTextButton";
 import { MainHeader } from "../../components/MainHeader";
 import { MainStructure } from "../../components/MainStructure";
 import { StandardCard } from "../../components/StandardCard";
 import { SecondaryWeatherCard } from "../../components/SecondaryWeatherCard";
 import { SecondaryTitle } from "../../components/SecondaryTitle";
-
-// Navigation
 import { RootStackParamList } from "../../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useRealtimeWeather } from "../../hooks/useRealtimeWeather";
 
 type Props = NativeStackScreenProps<RootStackParamList, "MenuWeatherScreen">;
 
-type CachedPayload<T> = { savedAt: number; data: T };
-
-// 1) API Key (via .env / app.config.*)
-const TOMORROW_API_KEY = process.env.EXPO_PUBLIC_TOMORROW_API_KEY;
-
-// 2) Localização (pode vir de props futuramente)
-const location = "-25.2419,-50.7719";
-
-// 3) TTL do cache (realtime) — 10 min
-const REALTIME_CACHE_TTL_MS = 10 * 60 * 1000;
-
 export function MenuWeatherScreen({ navigation }: Props) {
-  // Dimensões responsivas
   const screenWidth = Dimensions.get("window").width;
   const cardWidth = screenWidth * 0.9;
 
-  const [values, setValues] = useState<WeatherRealtime["data"]["values"] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<number | null>(null);
-  const [fromCache, setFromCache] = useState(false);
-  const [isOnline, setIsOnline] = useState<boolean | null>(null);
-
-  // URL e cache key reativas (se mudar localização/chave, muda tudo)
-  const WEATHER_URL = useMemo(
-    () =>
-      `https://api.tomorrow.io/v4/weather/realtime?location=${location}&apikey=${TOMORROW_API_KEY}&units=metric`,
-    [location, TOMORROW_API_KEY]
-  );
-  const CACHE_KEY = useMemo(() => `weather:realtime:${location}:metric`, [location]);
-
-  // Conectividade
-  useEffect(() => {
-    const unsub = NetInfo.addEventListener((state) => setIsOnline(!!state.isConnected));
-    return () => unsub();
-  }, []);
-
-  // Bootstrap
-  useEffect(() => {
-    (async () => {
-      if (!TOMORROW_API_KEY) {
-        const had = await readFromCache();
-        if (!had) setError("Chave da API Tomorrow.io não encontrada. Verifique seu .env e app.config.js");
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        if (isOnline) {
-          await fetchAndCache();
-        } else {
-          const had = await readFromCache();
-          if (!had) setError("Sem conexão e sem dados salvos para exibir.");
-        }
-      } catch (e) {
-        const had = await readFromCache();
-        if (!had) setError("Falha ao buscar dados do clima. Verifique sua conexão.");
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [isOnline, WEATHER_URL, CACHE_KEY]);
-
-  async function fetchAndCache() {
-    const res = await fetch(WEATHER_URL);
-
-    // Trata rate limit
-    if (res.status === 429) {
-      const retryAfter = res.headers.get("Retry-After");
-      throw new Error(
-        retryAfter
-          ? `Limite de requisições. Tente de novo em ${retryAfter}s.`
-          : "Limite de requisições atingido. Tente novamente em alguns minutos."
-      );
-    }
-
-    if (!res.ok) {
-      let msg = "";
-      try {
-        const body = await res.json();
-        msg = body?.message || res.statusText;
-      } catch {
-        msg = res.statusText;
-      }
-      throw new Error(`Erro na API: ${msg}`);
-    }
-
-    const json = (await res.json()) as WeatherRealtime;
-
-    setValues(json.data.values);
-    setError(null);
-    setFromCache(false);
-
-    const payload: CachedPayload<WeatherRealtime["data"]["values"]> = {
-      savedAt: Date.now(),
-      data: json.data.values,
-    };
-    await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(payload));
-    setLastUpdated(payload.savedAt);
-  }
-
-  async function readFromCache(): Promise<boolean> {
-    const raw = await AsyncStorage.getItem(CACHE_KEY);
-    if (!raw) return false;
-    try {
-      const payload = JSON.parse(raw) as CachedPayload<WeatherRealtime["data"]["values"]>;
-      setValues(payload.data || null);
-      setLastUpdated(payload.savedAt || null);
-      setFromCache(true);
-      return !!payload.data;
-    } catch {
-      return false;
-    }
-  }
-
-  async function refetchNow() {
-    setIsLoading(true);
-    try {
-      await fetchAndCache();
-    } catch {
-      await readFromCache();
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const { values, loading, error, fromCache, lastUpdated, isOnline, isStale } = useRealtimeWeather();
 
   function formatLastUpdated(ts: number | null) {
     if (!ts) return null;
@@ -162,10 +32,7 @@ export function MenuWeatherScreen({ navigation }: Props) {
     });
   }
 
-  const isStale = lastUpdated ? Date.now() - lastUpdated > REALTIME_CACHE_TTL_MS : false;
-
-  // Loading
-  if (isLoading) {
+  if (loading) {
     return (
       <MainStructure>
         <MainHeader title="Clima" source={require("../../assets/images/icons/general/weather-icon.png")} />
@@ -177,7 +44,6 @@ export function MenuWeatherScreen({ navigation }: Props) {
     );
   }
 
-  // Erro sem cache válido
   if ((error || !values) && !fromCache) {
     return (
       <MainStructure>
@@ -192,7 +58,6 @@ export function MenuWeatherScreen({ navigation }: Props) {
     );
   }
 
-  // Conteúdo
   return (
     <MainStructure>
       <MainHeader title="Clima" source={require("../../assets/images/icons/general/weather-icon.png")} />
@@ -200,24 +65,21 @@ export function MenuWeatherScreen({ navigation }: Props) {
       {/* Status/avisos */}
       <View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
         {!!lastUpdated && (
-          <Text style={{ fontSize: 12, color: isStale ? "#C47F00" : "#4CAF50" }}>
+          <Text style={{ fontSize: 12, textAlign: "center", color: isStale ? "#C47F00" : "#4CAF50" }}>
             {fromCache
               ? `Mostrando dados armazenados • Última atualização: ${formatLastUpdated(lastUpdated)}`
               : `Atualizado em: ${formatLastUpdated(lastUpdated)}`}
           </Text>
         )}
         {isOnline === false && (
-          <Text style={{ fontSize: 12, color: "#999" }}>Sem conexão: exibindo dados salvos (se disponíveis).</Text>
+          <Text style={{ fontSize: 12, textAlign: "center", color: "#999" }}>
+            Sem conexão: exibindo dados salvos.
+          </Text>
         )}
         {!!error && values && (
-          <Text style={{ fontSize: 12, color: "#C44747" }}>{error} — exibindo dados salvos.</Text>
-        )}
-
-        {/* Botão de debug (opcional) */}
-        {__DEV__ && (
-          <TouchableOpacity onPress={refetchNow} style={{ marginTop: 6, alignSelf: "flex-start" }}>
-            <Text style={{ color: "#2e7d32", fontSize: 12 }}>↻ Atualizar agora</Text>
-          </TouchableOpacity>
+          <Text style={{ fontSize: 12, textAlign: "center", color: "#C44747" }}>
+            {error} — exibindo dados salvos.
+          </Text>
         )}
       </View>
 
@@ -325,15 +187,7 @@ export function MenuWeatherScreen({ navigation }: Props) {
           variant="secondary"
           onPress={() => navigation.navigate("ForecastWeatherScreen", { period: "today" })}
         />
-
-        <ImageTextButton
-          source={require("../../assets/images/icons/weather/calendar-icon.png")}
-          text="amanhã"
-          mainColor="#80A218"
-          variant="secondary"
-          onPress={() => navigation.navigate("ForecastWeatherScreen", { period: "tomorrow" })}
-        />
-
+        
         <ImageTextButton
           source={require("../../assets/images/icons/weather/calendar-icon.png")}
           text="próximos dias"

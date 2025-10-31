@@ -1,16 +1,14 @@
 // App.tsx
 
-// Imports padrão
 import React, { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
 import { StatusBar, View, ActivityIndicator, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParamList } from './types/navigation';
 import { PaperProvider } from 'react-native-paper';
 
-// Supabase (client com SecureStore)
+import { RootStackParamList } from './types/navigation';
 import { supabase } from './services/supabaseClient';
 
 // Telas
@@ -31,8 +29,7 @@ import { SettingsScreen } from './screens/SettingsScreen';
 import { AboutScreen } from './screens/AboutScreen';
 import { SupportScreen } from './screens/SupportScreen';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
+// Tema
 const MyTheme = {
   ...DefaultTheme,
   colors: {
@@ -41,10 +38,13 @@ const MyTheme = {
   },
 };
 
-// ----- Stacks separados -----
+// Tipagem dos stacks
+const Auth = createNativeStackNavigator<RootStackParamList>();
+const App = createNativeStackNavigator<RootStackParamList>();
+
 function AuthStack() {
   return (
-    <Stack.Navigator
+    <Auth.Navigator
       initialRouteName="LoginScreen"
       screenOptions={{
         headerShown: false,
@@ -52,20 +52,21 @@ function AuthStack() {
         animation: 'fade',
       }}
     >
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="SignInScreen" component={SignInScreen} />
-      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-      <Stack.Screen name="SignUpFormScreen" component={SignUpFormScreen} />
-      {/* Se quiser, deixe About/Support aqui também para acesso público */}
-      <Stack.Screen name="AboutScreen" component={AboutScreen} />
-      <Stack.Screen name="SupportScreen" component={SupportScreen} />
-    </Stack.Navigator>
+      <Auth.Screen name="LoginScreen" component={LoginScreen} />
+      <Auth.Screen name="SignInScreen" component={SignInScreen} />
+      <Auth.Screen name="SignUpScreen" component={SignUpScreen} />
+      {/* Disponível também no stack público para completar cadastro após criar conta */}
+      <Auth.Screen name="SignUpFormScreen" component={SignUpFormScreen} />
+      {/* Telas opcionais públicas */}
+      <Auth.Screen name="AboutScreen" component={AboutScreen} />
+      <Auth.Screen name="SupportScreen" component={SupportScreen} />
+    </Auth.Navigator>
   );
 }
 
 function AppStack() {
   return (
-    <Stack.Navigator
+    <App.Navigator
       initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: false,
@@ -73,24 +74,25 @@ function AppStack() {
         animation: 'fade',
       }}
     >
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="MenuHistoryScreen" component={MenuHistoryScreen} />
-      <Stack.Screen name="ProductHistoryScreen" component={ProductHistoryScreen} />
-      <Stack.Screen name="MenuWeatherScreen" component={MenuWeatherScreen} />
-      <Stack.Screen name="ForecastWeatherScreen" component={ForecastWeatherScreen} />
-      <Stack.Screen name="MenuVideoScreen" component={MenuVideoScreen} />
-      <Stack.Screen name="VideosVideoScreen" component={VideosVideoScreen} />
-      <Stack.Screen name="PlayVideoScreen" component={PlayVideoScreen} />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
-      <Stack.Screen name="AboutScreen" component={AboutScreen} />
-      <Stack.Screen name="SupportScreen" component={SupportScreen} />
-    </Stack.Navigator>
+      <App.Screen name="HomeScreen" component={HomeScreen} />
+      <App.Screen name="MenuHistoryScreen" component={MenuHistoryScreen} />
+      <App.Screen name="ProductHistoryScreen" component={ProductHistoryScreen} />
+      <App.Screen name="MenuWeatherScreen" component={MenuWeatherScreen} />
+      <App.Screen name="ForecastWeatherScreen" component={ForecastWeatherScreen} />
+      <App.Screen name="MenuVideoScreen" component={MenuVideoScreen} />
+      <App.Screen name="VideosVideoScreen" component={VideosVideoScreen} />
+      <App.Screen name="PlayVideoScreen" component={PlayVideoScreen} />
+      <App.Screen name="ProfileScreen" component={ProfileScreen} />
+      <App.Screen name="SettingsScreen" component={SettingsScreen} />
+      <App.Screen name="AboutScreen" component={AboutScreen} />
+      <App.Screen name="SupportScreen" component={SupportScreen} />
+      {/* Também disponível no stack logado para editar cadastro depois */}
+      <App.Screen name="SignUpFormScreen" component={SignUpFormScreen} />
+    </App.Navigator>
   );
 }
 
-// ----- App com gate de autenticação -----
-export default function App() {
+export default function AppRoot() {
   const [fontsLoaded] = useFonts({
     'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
     'BebasNeue-Regular': require('./assets/fonts/BebasNeue-Regular.ttf'),
@@ -100,14 +102,12 @@ export default function App() {
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    // Restaura sessão ao abrir
     (async () => {
       const { data } = await supabase.auth.getSession();
       setIsLogged(!!data.session);
       setChecking(false);
     })();
 
-    // Observa mudanças de auth (login/logout/refresh)
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       setIsLogged(!!session);
     });

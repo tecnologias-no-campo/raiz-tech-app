@@ -1,25 +1,21 @@
+// services/youtubeClient.ts
 import { VideoItem } from "../types/videosVdType";
-import { PlaylistItem, PlaylistResponse } from "../types/videosPlType";
-
-//Configurando as chaves de acesso ao canal
+import { PlaylistItem } from "../types/videosPlType";
 import Constants from "expo-constants";
 
-const extra = Constants.expoConfig?.extra as 
-  |
-    {
-      youtubeApiKey?: string;
-      youtubeChannelId?: string;
-    }
-  | undefined;
+const extra = (Constants.expoConfig?.extra ?? {}) as {
+  youtubeApiKey?: string;
+  youtubeChannelId?: string;
+};
 
-const YT_API_KEY = extra?.youtubeApiKey;
-const CHANNEL_ID = extra?.youtubeChannelId;
+export const YT_API_KEY = extra.youtubeApiKey;
+export const CHANNEL_ID = extra.youtubeChannelId;
 
-if(!YT_API_KEY || !CHANNEL_ID)  {
+if (!YT_API_KEY || !CHANNEL_ID) {
   throw new Error("Chaves de acesso ao Youtube ausentes!");
 }
 
-function qs(params: Record<string, string | number | undefined>) {
+export function qs(params: Record<string, string | number | undefined>) {
   const usp = new URLSearchParams();
   Object.entries(params).forEach(([k, v]) => {
     if (v !== undefined && v !== null) usp.append(k, String(v));
@@ -27,7 +23,7 @@ function qs(params: Record<string, string | number | undefined>) {
   return usp.toString();
 }
 
-//Função que busca as playlists no canal do youtube
+// Playlists do canal
 export async function fetchChannelPlaylists(
   maxResults = 25,
   pageToken?: string
@@ -53,20 +49,15 @@ export async function fetchChannelPlaylists(
     snippet: { title: string };
   }>;
 
-  return items.map((it) => ({
-    id: it.id,
-    title: it.snippet.title,
-  }));
+  return items.map((it) => ({ id: it.id, title: it.snippet.title }));
 }
 
-//Função que busca os vídeos de uma determinada playlist e recupera a descrição deles
+// Vídeos de uma playlist (com description)
 export async function fetchPlaylistVideosWithDescription(
   playlistId: string,
   maxResults = 25,
   pageToken?: string
-): Promise<VideoItem[]>
- {
-  //playlistItems → pegar videoIds
+): Promise<VideoItem[]> {
   const urlPI = `https://www.googleapis.com/youtube/v3/playlistItems?${qs({
     part: "snippet,contentDetails",
     playlistId,
@@ -83,19 +74,11 @@ export async function fetchPlaylistVideosWithDescription(
     throw new Error(msg);
   }
 
-  const itemsPI = (jPI.items || []) as Array<{
-    contentDetails?: { videoId?: string };
-  }>;
+  const itemsPI = (jPI.items || []) as Array<{ contentDetails?: { videoId?: string } }>;
+  const ids = itemsPI.map((it) => it.contentDetails?.videoId).filter((id): id is string => !!id);
 
-  const ids = itemsPI
-    .map((it) => it.contentDetails?.videoId)
-    .filter((id): id is string => !!id);
+  if (ids.length === 0) return [];
 
-  if (ids.length === 0) {
-    return [];
-  }
-
-  // videos.list → snippet (title, description, thumbnails, publishedAt)
   const urlV = `https://www.googleapis.com/youtube/v3/videos?${qs({
     part: "snippet",
     id: ids.join(","),
@@ -115,26 +98,18 @@ export async function fetchPlaylistVideosWithDescription(
     snippet: {
       title?: string;
       description?: string;
-      publishedAt?: string;
-      thumbnails?: {
-        high?: { url?: string };
-        medium?: { url?: string };
-        default?: { url?: string };
-      };
+      thumbnails?: { high?: { url?: string }; medium?: { url?: string }; default?: { url?: string } };
     };
   }>;
 
-  // normaliza thumbnails (preferindo high > medium > default)
-  const result: VideoItem[] = itemsV.map((v) => ({
+  return itemsV.map((v) => ({
     title: v.snippet?.title || "",
     description: v.snippet?.description || "",
-    thumbnailUrl:  
-        v.snippet?.thumbnails?.high?.url ||
-        v.snippet?.thumbnails?.medium?.url ||
-        v.snippet?.thumbnails?.default?.url ||
-        "",
-    videoId: v.id,      
-    }));
-
-  return result;
+    thumbnailUrl:
+      v.snippet?.thumbnails?.high?.url ||
+      v.snippet?.thumbnails?.medium?.url ||
+      v.snippet?.thumbnails?.default?.url ||
+      "",
+    videoId: v.id,
+  }));
 }
