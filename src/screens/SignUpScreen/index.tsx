@@ -1,4 +1,6 @@
-//Tela de cadastro no aplicativo que apresenta informações referentes a conta dos usuários: email e senha
+// SignUpScreen.tsx
+// Tela de cadastro no aplicativo (e-mail + senha)
+
 import React, { useState } from "react";
 import { View, Alert } from "react-native";
 import { styles } from "./styles";
@@ -12,71 +14,105 @@ import { FormField } from "../../components/FormField";
 import { RootStackParamList } from "../../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-// Supabase
+// Supabase (client com SecureStore)
 import { supabase } from "../../services/supabaseClient";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>
+type Props = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
 
 export function SignUpScreen({ navigation }: Props) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    async function handleSignUp() {
-        setLoading(true);
+  function isValidEmail(e: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  }
 
-        const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-        });
+  async function handleSignUp() {
+    const trimmedEmail = email.trim().toLowerCase();
 
-        setLoading(false);
-
-        if (error) {
-            if(error.message.includes("already registered"))    {
-                Alert.alert("Erro no cadastro, esse email já está cadastrado");
-            } else{
-                Alert.alert('Erro no Cadastro', error.message);
-            }           
-        } else {
-            if (data?.user?.id) {
-                Alert.alert('Sucesso!', 'Verifique seu e-mail para confirmar a conta.');
-                
-                // Navega para a próxima tela e passa o ID do usuário como parâmetro
-                navigation.navigate("SignUpFormScreen", { userId: data.user.id });
-            }
-        }
+    // Validações simples
+    if (!trimmedEmail || !password) {
+      Alert.alert("Campos obrigatórios", "Informe e-mail e senha.");
+      return;
+    }
+    if (!isValidEmail(trimmedEmail)) {
+      Alert.alert("E-mail inválido", "Verifique o formato do e-mail informado.");
+      return;
+    }
+    if (password.length < 6) {
+      Alert.alert("Senha fraca", "A senha deve ter pelo menos 6 caracteres.");
+      return;
     }
 
-    return (
-        <View style={styles.signUpScreen_container}>
-            <LoginStructure>
-                <View style={styles.signInScreen_form}>
-                    <FormField
-                        label="Email"
-                        mainColor="#80A218"
-                        keyboardType="email-address"
-                        onChangeText={setEmail}
-                        value={email}
-                        autoCapitalize="none"
-                    />
-                    <FormField
-                        label="Senha"
-                        mainColor="#80A218"
-                        keyboardType="default"
-                        secureTextEntry={true}
-                        onChangeText={setPassword}
-                        value={password}
-                    />
-                    <SimpleButton
-                        title={loading ? 'Criando conta...' : "Continuar"}
-                        mainColor="#80A218"
-                        variant="primary"
-                        onPress={handleSignUp}
-                        disabled={loading}
-                    />
-                </View>
-            </LoginStructure>
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: trimmedEmail,
+        password,
+      });
+
+      if (error) {
+        const msg = (error.message || "").toLowerCase();
+        if (msg.includes("already") || msg.includes("registered") || msg.includes("exists")) {
+          Alert.alert("Erro no cadastro", "Este e-mail já está cadastrado.");
+        } else {
+          Alert.alert("Erro no cadastro", error.message);
+        }
+        return;
+      }
+
+      // Políticas do Supabase:
+      // - Se exigir confirmação por e-mail, a sessão pode NÃO vir ativa ainda.
+      // - Ainda assim, `data.user` existe (com ID) -> prossiga para coletar dados do perfil.
+      const userId = data?.user?.id;
+      if (userId) {
+        Alert.alert(
+          "Conta criada!",
+          "Enviamos um e-mail para confirmação. Após confirmar, você poderá acessar normalmente."
+        );
+        navigation.navigate("SignUpFormScreen", { userId });
+      } else {
+        // Caso raro: sem userId — peça para tentar novamente
+        Alert.alert("Atenção", "Não foi possível obter o usuário. Tente novamente em instantes.");
+      }
+    } catch (e: any) {
+      Alert.alert("Erro", "Não foi possível criar a conta no momento.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <View style={styles.signUpScreen_container}>
+      <LoginStructure>
+        <View style={styles.signInScreen_form}>
+          <FormField
+            label="Email"
+            mainColor="#80A218"
+            keyboardType="email-address"
+            onChangeText={setEmail}
+            value={email}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <FormField
+            label="Senha"
+            mainColor="#80A218"
+            keyboardType="default"
+            secureTextEntry
+            onChangeText={setPassword}
+            value={password}
+          />
+          <SimpleButton
+            title={loading ? "Criando conta..." : "Continuar"}
+            mainColor="#80A218"
+            variant="primary"
+            onPress={handleSignUp}
+            disabled={loading}
+          />
         </View>
-    );
+      </LoginStructure>
+    </View>
+  );
 }
