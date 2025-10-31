@@ -58,6 +58,7 @@ export function SignUpScreen({ navigation }: Props) {
                         keyboardType="email-address"
                         onChangeText={setEmail}
                         value={email}
+                        autoCapitalize="none"
                     />
                     <FormField
                         label="Senha"

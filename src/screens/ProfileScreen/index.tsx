@@ -36,6 +36,7 @@ interface Produtor {
 
 export function ProfileScreen({navigation} : Props) {
     const [produtor, setProdutor] = useState<Produtor | null>(null);
+    const [userId, setUserId] = useState<string | null>(null);
 
     //Definição de tela adaptável
     const screenWidth = Dimensions.get('window').width;
@@ -51,6 +52,7 @@ export function ProfileScreen({navigation} : Props) {
             }
 
             const userId = userData.user.id;
+            setUserId(userId); 
 
             const {data, error} = await supabase
                 .from("produtores")
@@ -90,7 +92,7 @@ export function ProfileScreen({navigation} : Props) {
                     borderColor="#80A218"
                     width={cardWidth}
                     borderWidth={3}
-                    height={'70%'}
+                    height={'50%'}
                 >
                 <ScrollView>
                     <View style={styles.profileScreen_headerProfile}>
@@ -123,6 +125,18 @@ export function ProfileScreen({navigation} : Props) {
                     mainColor="#FF3131"
                     variant="primary"
                     onPress={handleSignOut}                    
+                />
+                <SimpleButton
+                    title="Atualizar cadastro"
+                    mainColor="#80A218"
+                    variant="primary"
+                    onPress={() => {
+                        if (!userId) {
+                            Alert.alert("Erro", "Usuário não identificado.");
+                            return;
+                        }
+                        navigation.navigate("SignUpFormScreen", { userId });
+                    }}
                 />
             </View>
         </MainStructure>

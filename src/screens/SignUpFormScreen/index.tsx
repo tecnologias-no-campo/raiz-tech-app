@@ -1,5 +1,5 @@
 //Tela que apresenta o formulário de cadastro no aplicativo, com informações pessoais dos produtores
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, Alert } from "react-native";
 import { styles } from "./styles";
 
@@ -30,25 +30,57 @@ export function SignUpFormScreen({ navigation, route }: Props) {
     const [nivelTecnologia, setNivelTecnologia] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const [isEditing, setIsEditing] = useState(false);
+
     // Pegando o 'userId' que foi passado pela tela anterior
     const { userId } = route.params;
 
-    async function handleSignUpFormSubmit() {
+    useEffect(() => {
+        (async () => {
+            setLoading(true);
+            const {data, error} = await supabase
+                .from("produtores")
+                .select("*")
+                .eq("user_id", userId)
+                .maybeSingle();
+
+            if(error)   {
+                console.warn(error);
+            } else if(data) {
+                setIsEditing(true);
+                setNomeCompleto(data.nome_completo ?? "");
+                setFazenda(data.nome_fazenda ?? "");
+                setCidade(data.cidade ?? "");
+                setAreaTotal(String(data.area_total_ha ?? ""));
+                setTipoProducao(data.tipo_producao ?? "");
+                setPrincipalProduto(data.principal_produto ?? "");
+                setNumeroTrabalhadores(String(data.numero_trabalhadores ?? ""));
+                setNivelTecnologia(data.nivel_tecnologia ?? "");
+            }
+            setLoading(false);
+        })();
+    }, [userId]);
+
+    async function handleSubmit() {
         setLoading(true);
+
+        const payload = {
+            user_id: userId,
+            nome_completo: nomeCompleto,
+            nome_fazenda: fazenda,
+            cidade,
+            area_total_ha: areaTotal ? Number(areaTotal) : null,
+            tipo_producao: tipoProducao,
+            principal_produto: principalProduto,
+            numero_trabalhadores: numeroTrabalhadores
+                ? Number(numeroTrabalhadores)
+                : null,
+            nivel_tecnologia: nivelTecnologia,
+        };
 
         const { error } = await supabase
             .from('produtores')
-            .insert({
-                user_id: userId,
-                nome_completo: nomeCompleto,
-                nome_fazenda: fazenda,
-                cidade: cidade,
-                area_total_ha: areaTotal,
-                tipo_producao: tipoProducao,
-                principal_produto: principalProduto,
-                numero_trabalhadores: numeroTrabalhadores,
-                nivel_tecnologia: nivelTecnologia,
-            });
+            .upsert(payload, {onConflict: "user_id"});
 
         setLoading(false);
 
@@ -88,18 +120,17 @@ export function SignUpFormScreen({ navigation, route }: Props) {
                             value={cidade}
                         />
                         <FormField
-                            label="Área total"
+                            label="Área total (hectares)"
                             mainColor="#80A218"
                             keyboardType="numeric"
                             onChangeText={setAreaTotal}
                             value={areaTotal}
                         />
-                        <FormField
-                            label="Tipo da produção"
+                        <DropDownMenu
+                            titulo="Tipo da produção"
                             mainColor="#80A218"
-                            keyboardType="default"
-                            onChangeText={setTipoProducao}
-                            value={tipoProducao}
+                            options={["Agrícola", "Pecuária", "Agropecuária", "Leiteira", "Avicultura", "Suinocultura", "Apicultura (abelhas)", "Piscultura (peixes)", "Agroindustrial", "Outros"]}
+                            onSelect={setTipoProducao}
                         />
                         <FormField
                             label="Principal produto"
@@ -116,16 +147,17 @@ export function SignUpFormScreen({ navigation, route }: Props) {
                             value={numeroTrabalhadores}
                         />
                         <DropDownMenu
+                            titulo="Nível de Tecnologia"
                             mainColor="#80A218"
                             options={["Básico", "Médio", "Avançado"]}
                             onSelect={setNivelTecnologia}
                         />
 
                         <SimpleButton
-                            title={loading ? "Salvando..." : "Registrar-se"}
+                            title={loading ? "Salvando..." : isEditing ? "Salvar alterações" : "Registrar-se"}
                             mainColor="#80A218"
                             variant="primary"
-                            onPress={handleSignUpFormSubmit}
+                            onPress={handleSubmit}
                             disabled={loading}
                         />
                     </ScrollView>

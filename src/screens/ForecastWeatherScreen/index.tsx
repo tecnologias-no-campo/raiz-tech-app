@@ -151,7 +151,7 @@ export function ForecastWeatherScreen({route} : Props) {
                 source={require("../../assets/images/icons/general/weather-icon.png")}
             />
 
-            <ScrollView>
+            <ScrollView style={{marginTop: 20}}>
                 {/* Se não houver dados, mostre uma mensagem */}
                 {dataToDisplay.length === 0 && !isLoading &&
                     <View style={{padding: 20, alignItems: 'center'}}>

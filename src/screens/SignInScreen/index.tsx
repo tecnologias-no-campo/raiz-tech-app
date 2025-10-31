@@ -55,6 +55,7 @@ export function SignInScreen({navigation} : Props)  {
                             keyboardType="email-address"
                             value={email}
                             onChangeText={setEmail}
+                            autoCapitalize="none"
                         />
                         <FormField
                             label="Senha"

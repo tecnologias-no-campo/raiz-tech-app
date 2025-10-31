@@ -10,9 +10,10 @@ interface FormFieldProps extends TextInputProps {
     label: string;
     error?: string;
     mainColor: string;
+    autoCapitalize?: any;
 }
 
-export function  FormField({ label, error, mainColor, ...rest }: FormFieldProps) {
+export function  FormField({ label, error, mainColor, autoCapitalize, ...rest }: FormFieldProps) {
     const placeholderTextColor = error ? "red" : "#888888";
     const labelColor = error ? "red" : "#888888";
 
@@ -30,6 +31,7 @@ export function  FormField({ label, error, mainColor, ...rest }: FormFieldProps)
                 placeholder={label}
                 placeholderTextColor={placeholderTextColor}
                 style={inputStyles}
+                autoCapitalize={autoCapitalize}
                 {...rest}
             />
             {error ? <Text style={styles.formField_error}>{error}</Text> : null}

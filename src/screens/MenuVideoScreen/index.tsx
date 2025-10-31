@@ -54,7 +54,7 @@ export function MenuVideoScreen({navigation} : Props)   {
 
             <ScrollView 
                 contentContainerStyle={{
-                    marginTop: 30,
+                    marginTop: 10,
                     paddingTop: 30,
                     paddingHorizontal: 16,
                     paddingBottom: 40, 
