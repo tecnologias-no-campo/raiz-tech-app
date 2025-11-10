@@ -35,7 +35,7 @@ export function AboutScreen()   {
                     width={300}
                     height={220}
                     play={false}
-                    videoId={"WhUldAtUi8o"}
+                    videoId={"DnqKNfoYS6g"}
                 />
             </View>
         </MainStructure>
